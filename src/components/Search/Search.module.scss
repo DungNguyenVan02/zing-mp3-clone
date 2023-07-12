@@ -1,0 +1,56 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-player);
+    height: 40px;
+    width: 100%;
+    border-radius: 30px;
+    background-color: var(--border-player);
+    .icon-search {
+        font-size: 1.4rem;
+        margin-left: 12px;
+    }
+
+    .search-input {
+        font-size: 1.4rem;
+        height: 100%;
+        width: 100%;
+        flex: 1;
+        background-color: transparent;
+        color: #fff;
+        padding: 0 56px 0 6px;
+
+        &::-webkit-input-placeholder {
+            color: var(--text-placeholder);
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+    }
+
+    .clear,
+    .loading {
+        background-color: transparent;
+        color: #fff;
+        position: absolute;
+        right: 28px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .loading {
+        animation: spinner 1s linear infinite;
+    }
+    svg {
+        font-size: 2rem;
+    }
+}
+
+// @keyframes spinner {
+//     from {
+//         transform: translateY(-50%) rotate(0);
+//     }
+//     to {
+//         transform: translateY(-50%) rotate(360deg);
+//     }
+// }

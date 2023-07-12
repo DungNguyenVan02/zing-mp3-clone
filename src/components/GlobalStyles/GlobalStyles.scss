@@ -1,0 +1,78 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+:root {
+    //Text
+    --primary: #9b4de0;
+    --text-placeholder: #dadada;
+    --text-color: #dadada;
+    --white-color: #fff;
+    --text-secondary: hsla(0, 0%, 100%, 0.5);
+    --primary-blur-bg: #2e2739;
+    --hover-blur-bg: hsla(0, 0%, 100%, 0.1);
+    --text-blur: #756a87;
+    --purple-primary: #9b4de0;
+    --link-text-hover: #c273ed;
+
+    //Layouts
+    --sidebar-bg: #231b2e;
+    --layout-bg: #170f23;
+    --layout-header-bg: rgba(23, 15, 35, 0.9);
+    --player-bg: #130c1c;
+    --border-player: hsla(0, 0%, 100%, 0.1);
+    --bgr-button: hsla(0, 0%, 100%, 0.1);
+    --sidebar-popup-bg: #2a213a;
+    --primary-bg: #34224f;
+    --purple-primary: #3560f5;
+    --progressbar-player-bg: hsla(0, 0%, 100%, 0.3);
+
+    //Fonts
+    --font-family: 'Inter', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 1.4rem;
+    line-height: 1.4;
+    text-rendering: optimizeSpeed;
+    color: var(--text-color);
+    overflow-y: overlay;
+}
+
+// scrollbar css
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.15);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}

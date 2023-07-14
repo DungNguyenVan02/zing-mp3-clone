@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 function SidebarLeftItem({ title, icon, to }) {
     return (
         <NavLink className={(nav) => cx('menu-item', { active: nav.isActive })} to={to}>
-            <Button leftIcon={icon} textBtn>
+            <Button className={cx('menu-btn')} leftIcon={icon} textBtn>
                 {title}
             </Button>
         </NavLink>

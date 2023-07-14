@@ -1,1 +1,1 @@
-export const testSelector = (state) => state.reducer.homeData;
+export const bannerSelector = (state) => state.reducer.banners;

@@ -1,11 +1,14 @@
-import actionTypes from '../actions';
+import actionTypes from '../actions/actionTypes';
 const initState = {
-    homeData: [1, 2, 3],
+    banners: [],
 };
 function reducerSlice(state = initState, action) {
     switch (action.type) {
         case actionTypes.GET_HOME:
-            return;
+            return {
+                ...state,
+                banners: action.banners,
+            };
         default:
             return state;
     }

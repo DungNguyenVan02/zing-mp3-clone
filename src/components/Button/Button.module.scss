@@ -42,9 +42,8 @@
 }
 
 .textBtn {
-    background-color: transparent;
     font-weight: 400;
-    color: var(--text-color);
+    // color: var(--text-color);
     &:hover {
         opacity: 0.8;
     }

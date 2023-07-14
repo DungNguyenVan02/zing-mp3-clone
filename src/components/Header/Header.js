@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Search from '../Search';
 import Button from '../Button/Button';
-import { SettingIcon, DownLoadIcon } from '../icons';
+import { SettingIcon } from '../icons';
 import images from '~/assets/images';
 
 const cx = classNames.bind(styles);

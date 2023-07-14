@@ -1,0 +1,24 @@
+.wrapper {
+    padding: 32px 0;
+}
+
+.item {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.btn-prev {
+    position: absolute;
+    z-index: 1000;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.btn-next {
+    position: absolute;
+    z-index: 1000;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}

@@ -1,5 +1,11 @@
 .wrapper {
     padding: 32px 0;
+    &:hover {
+        .btn-prev,
+        .btn-next {
+            opacity: 1;
+        }
+    }
 }
 
 .item {
@@ -8,17 +14,39 @@
 }
 
 .btn-prev {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
     position: absolute;
     z-index: 1000;
     left: 8px;
     top: 50%;
     transform: translateY(-50%);
+    background-color: var(--bgr-button);
+    color: #333;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
 }
 
 .btn-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
     position: absolute;
     z-index: 1000;
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
+    background-color: var(--bgr-button);
+    color: #333;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
 }

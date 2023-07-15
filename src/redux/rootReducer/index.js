@@ -1,8 +1,25 @@
 import { combineReducers } from 'redux';
-import reducerSlice from '../reducerSlice/reducerSlice';
+import { persistReducer } from 'redux-persist';
+import homeSlice from '../reducerSlice/homeSlice';
+import musicSlice from '../reducerSlice/musicSlice';
+
+import storage from 'redux-persist/lib/storage';
+import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
+
+const persistConfig = {
+    storage,
+    stateReconciler: autoMergeLevel2,
+};
+
+const persistMusicConfig = {
+    ...persistConfig,
+    key: 'music',
+    whitelist: ['currentSongId'],
+};
 
 const rootReducer = combineReducers({
-    reducer: reducerSlice,
+    home: homeSlice,
+    music: persistReducer(persistMusicConfig, musicSlice),
 });
 
 export default rootReducer;

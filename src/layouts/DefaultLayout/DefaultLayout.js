@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import SidebarLeft from '~/components/sidebars/SidebarLeft';
 // import SidebarRight from '~/components/sidebars/SidebarRight';
 import Header from '~/components/Header';
+import ControlMusic from '~/components/ControlMusic/';
 
 const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
@@ -15,7 +16,7 @@ function DefaultLayout({ children }) {
                     <div className={cx('sidebar', 'col l-2 m-2 c-2')}>
                         <SidebarLeft />
                     </div>
-                    <div className={cx('content', 'col l-10 m-8')}>
+                    <div className={cx('content', 'col l-10 m-10')}>
                         <Header />
                         <div className={cx('container')}>{children}</div>
                     </div>
@@ -24,9 +25,9 @@ function DefaultLayout({ children }) {
                     </div> */}
                 </div>
             </div>
-            {/* <div className={cx('control')}>
+            <div className={cx('control')}>
                 <ControlMusic />
-            </div> */}
+            </div>
         </div>
     );
 }

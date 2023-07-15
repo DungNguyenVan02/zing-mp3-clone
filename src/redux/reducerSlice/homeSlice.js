@@ -2,7 +2,7 @@ import actionTypes from '../actions/actionTypes';
 const initState = {
     banners: [],
 };
-function reducerSlice(state = initState, action) {
+function homeSlice(state = initState, action) {
     switch (action.type) {
         case actionTypes.GET_HOME:
             return {
@@ -14,4 +14,4 @@ function reducerSlice(state = initState, action) {
     }
 }
 
-export default reducerSlice;
+export default homeSlice;

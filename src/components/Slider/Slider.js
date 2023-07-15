@@ -3,27 +3,36 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
-import { useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Slider.module.scss';
-import { useSelector } from 'react-redux';
+import * as actions from '~/redux/actions';
+import { useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { bannerSelector } from '~/redux/selector';
 import { Pagination, Navigation, Autoplay, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 const cx = classNames.bind(styles);
 
 function Slider() {
+    const dispatch = useDispatch();
     const bannerList = useSelector(bannerSelector);
 
     const navigationPrevRef = useRef(null);
     const navigationNextRef = useRef(null);
 
-    const render = bannerList?.map((item, index) => {
+    const handleClick = (item) => {
+        if (item?.type === 1) {
+            dispatch(actions.setCurrentSongId(item.encodeId));
+        }
+    };
+
+    const render = bannerList?.map((item) => {
         return (
-            <SwiperSlide key={index}>
-                <img className={cx('item')} src={item.banner} alt="" />
+            <SwiperSlide key={item.encodeId}>
+                <img className={cx('item')} src={item.banner} alt="" onClick={() => handleClick(item)} />
             </SwiperSlide>
         );
     });
@@ -32,7 +41,6 @@ function Slider() {
             <Swiper
                 modules={[Navigation, Pagination, Autoplay, A11y]}
                 spaceBetween={25}
-                slidesPerView={3}
                 loop={true}
                 autoplay={{
                     delay: 2000,
@@ -52,6 +60,24 @@ function Slider() {
                 speed={600}
                 allowTouchMove={false}
                 scrollbar={{ draggable: false }}
+                breakpoints={{
+                    0: {
+                        slidesPerView: 1,
+                        allowTouchMove: true,
+                        navigation: false,
+                        autoplay: {
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        },
+                    },
+                    600: {
+                        slidesPerView: 2,
+                        allowTouchMove: true,
+                    },
+                    1040: {
+                        slidesPerView: 3,
+                    },
+                }}
             >
                 {render}
                 <button ref={navigationPrevRef} className={cx('btn-prev')}>

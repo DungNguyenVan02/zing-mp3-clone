@@ -1,0 +1,174 @@
+.wrapper {
+    --height-control: 90px;
+
+    display: flex;
+    align-items: center;
+    background-color: var(--player-bg);
+    width: 100%;
+    height: var(--height-control);
+    padding: 8px 24px;
+}
+
+.control-left {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .img {
+        width: 64px;
+        height: 64px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-right: 12px;
+    }
+    .img-link {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+    }
+    .name {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--white-color);
+    }
+    .singer {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+    }
+}
+
+.option-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin: 0 4px;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--border-player);
+    }
+}
+
+.control-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .icon {
+        svg {
+            font-size: 2rem;
+            font-weight: 400;
+        }
+    }
+}
+
+.player-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    width: 40%;
+
+    .outline {
+        border: 1px solid var(--white-color);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+}
+.player-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+
+    .progress {
+        display: flex;
+        width: 100%;
+        height: 4px;
+        margin: 0 8px;
+        border-radius: 8px;
+        background-color: var(--progressbar-player-bg);
+        cursor: pointer;
+        &:hover {
+            height: 6px;
+            .progress-area {
+                height: 6px;
+
+                &::after {
+                    display: block;
+                }
+            }
+        }
+    }
+    .progress-area {
+        position: relative;
+        width: 10%;
+        border-radius: 8px;
+        background-color: var(--white-color);
+        transition: all 0.2s ease-in-out;
+
+        &::after {
+            display: none;
+            position: absolute;
+            content: '';
+            right: 0;
+            top: 4px;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--white-color);
+        }
+    }
+}
+
+.control-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    .volume-input {
+        left: 36px;
+        width: 100px;
+        height: 4px;
+        border-radius: 8px;
+        background-color: var(--border-player);
+    }
+    .icon:last-child {
+        margin-left: 40px;
+        position: relative;
+        &::after {
+            position: absolute;
+            content: '';
+            width: 1px;
+            height: 100%;
+            background-color: var(--border-player);
+            left: -14px;
+        }
+    }
+}

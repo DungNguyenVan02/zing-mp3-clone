@@ -1,0 +1,29 @@
+.wrapper {
+    position: absolute;
+    min-width: 240px;
+    right: 0;
+    top: 0;
+    bottom: var(--height-control);
+    background-color: rgb(97, 193, 204);
+    z-index: 9999;
+    transform: translateX(100%);
+    animation: rightIn 0.5s ease-in-out;
+    transition: all ease-in-out 0.5s;
+    -webkit-transform: translateX(100%);
+    -webkit-transition: all ease-in-out 0.5s;
+}
+
+.active {
+    transform: translateX(0);
+}
+
+@keyframes rightIn {
+    to {
+        opacity: 0;
+    }
+    from {
+        opacity: 1;
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+    }
+}

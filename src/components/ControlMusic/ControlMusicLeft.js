@@ -1,21 +1,18 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './ControlMusic.module.scss';
 import { HeartIcon, MenuIcon } from '../icons';
 
 const cx = classNames.bind(styles);
-function ControlMusicLeft() {
+function ControlMusicLeft({ data }) {
     return (
         <div className={cx('control-left')}>
             <div className={cx('img')}>
-                <img
-                    className={cx('img-link')}
-                    src="https://photo-resize-zmp3.zmdcdn.me/w94_r1x1_jpeg/cover/9/3/b/b/93bb0d07f098664abc73579a982294d7.jpg"
-                    alt=""
-                />
+                <img className={cx('img-link')} src={data?.thumbnail} alt={data?.title} />
             </div>
             <div className={cx('info')}>
-                <h3 className={cx('name')}>Rồi sẽ đến nơi (duet version)</h3>
-                <p className={cx('singer')}>JUUN D, O.lew</p>
+                <h3 className={cx('name')}>{data?.title}</h3>
+                <p className={cx('singer')}>{data?.artistsNames}</p>
             </div>
             <div className={cx('option-left')}>
                 <span className={cx('icon')} title="Thêm vào thư viện">
@@ -28,5 +25,9 @@ function ControlMusicLeft() {
         </div>
     );
 }
+
+ControlMusicLeft.propTypes = {
+    data: PropTypes.object.isRequired,
+};
 
 export default ControlMusicLeft;

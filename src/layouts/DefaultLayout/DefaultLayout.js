@@ -3,7 +3,7 @@ import styles from './DefaultLayout.module.scss';
 
 import PropTypes from 'prop-types';
 import SidebarLeft from '~/components/sidebars/SidebarLeft';
-// import SidebarRight from '~/components/sidebars/SidebarRight';
+import SidebarRight from '~/components/sidebars/SidebarRight';
 import Header from '~/components/Header';
 import ControlMusic from '~/components/ControlMusic/';
 
@@ -20,9 +20,9 @@ function DefaultLayout({ children }) {
                         <Header />
                         <div className={cx('container')}>{children}</div>
                     </div>
-                    {/* <div className={cx('sidebar', 'col l-2 m-0 c-0')}>
+                    <div>
                         <SidebarRight />
-                    </div> */}
+                    </div>
                 </div>
             </div>
             <div className={cx('control')}>

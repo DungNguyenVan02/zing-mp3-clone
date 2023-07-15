@@ -22,3 +22,10 @@ export const getHome = () => async (dispatch) => {
         });
     }
 };
+
+export const setOpenSidebar = (payload) => {
+    return {
+        type: actionTypes.SET_OPEN_SIDE_BAR_RIGHT,
+        payload,
+    };
+};

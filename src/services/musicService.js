@@ -25,3 +25,16 @@ export const getSong = async (id) => {
         console.log(error);
     }
 };
+
+export const getDetailPlayList = async (id) => {
+    try {
+        const result = await request.get('/detailplaylist', {
+            params: {
+                id: id,
+            },
+        });
+        return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

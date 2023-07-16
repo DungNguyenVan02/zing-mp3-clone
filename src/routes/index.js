@@ -21,6 +21,10 @@ const publicRoutes = [
         path: config.top100.path,
         component: config.top100.component,
     },
+    {
+        path: config.album.path,
+        component: config.album.component,
+    },
 ];
 const privateRoutes = [];
 

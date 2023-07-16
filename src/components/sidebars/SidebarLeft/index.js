@@ -4,6 +4,7 @@ import { BoxMusicIcon, CircleIcon, RadioIcon, NoteMusicIcon, StarIcon } from '~/
 import images from '~/assets/images';
 import config from '~/config/routes';
 import SidebarLeftItem from './SidebarLeftItem';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -38,9 +39,11 @@ const MENU_ITEMS = [
 function SidebarLeft() {
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('logo')}>
-                <img src={images.logo} alt="logo" />
-            </div>
+            <Link to={config.home.path}>
+                <div className={cx('logo')}>
+                    <img src={images.logo} alt="logo" />
+                </div>
+            </Link>
             <div className={cx('menu-list')}>
                 {MENU_ITEMS.map((item, index) => {
                     return <SidebarLeftItem key={index} title={item.title} to={item.to} icon={item.icon} />;

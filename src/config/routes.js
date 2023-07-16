@@ -3,6 +3,7 @@ import MyMusic from '~/pages/MyMusic';
 import NewMusic from '~/pages/NewMusic';
 import Radio from '~/pages/Radio';
 import Top100 from '~/pages/Top100';
+import Album from '~/pages/Album';
 
 const config = {
     home: {
@@ -24,6 +25,10 @@ const config = {
     top100: {
         component: Top100,
         path: '/top-100-music',
+    },
+    album: {
+        component: Album,
+        path: '/album/:title/:id',
     },
 };
 export default config;

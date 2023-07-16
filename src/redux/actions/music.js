@@ -6,3 +6,10 @@ export const setCurrentSongId = (id) => {
         payload: id,
     };
 };
+
+export const setPlaying = (isPlay = false) => {
+    return {
+        type: actionTypes.SET_PLAYING,
+        payload: isPlay,
+    };
+};

@@ -12,16 +12,20 @@ const cx = classNames.bind(styles);
 
 function ControlMusic() {
     const currentSongId = useSelector(currentSongSelector);
-    const [songInfo, setSongInfo] = useState(null);
+    const [songInfo, setSongInfo] = useState({});
+    const [songSource, setsSongSource] = useState({});
     useEffect(() => {
         const fetchApi = async () => {
-            const response = await apis.getInfo(currentSongId);
-            if (response.err === 0) {
-                setSongInfo(response.data);
+            const [res1, res2] = await Promise.all([apis.getInfo(currentSongId), apis.getSong(currentSongId)]);
+            if (res1.err === 0) {
+                setSongInfo(res1.data);
+            }
+            if (res2.err === 0) {
+                setsSongSource(res2.data['128']);
             }
         };
         fetchApi();
-    }, [currentSongId]);
+    }, [currentSongId, songSource]);
 
     return (
         <div className={cx('wrapper')}>
@@ -30,7 +34,7 @@ function ControlMusic() {
                     <ControlMusicLeft data={songInfo} />
                 </div>
                 <div className="col l-6 m-6">
-                    <ControlMusicCenter />
+                    <ControlMusicCenter data={songSource} />
                 </div>
                 <div className="col l-3 m-3">
                     <ControlMusicRight />

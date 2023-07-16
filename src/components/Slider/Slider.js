@@ -13,11 +13,14 @@ import { Pagination, Navigation, Autoplay, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Slider() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const bannerList = useSelector(bannerSelector);
 
     const navigationPrevRef = useRef(null);
@@ -26,6 +29,10 @@ function Slider() {
     const handleClick = (item) => {
         if (item?.type === 1) {
             dispatch(actions.setCurrentSongId(item.encodeId));
+            dispatch(actions.setPlaying(true));
+        } else if (item?.type === 4) {
+            const pathAlbum = item.link.split('.')[0];
+            navigate(pathAlbum);
         }
     };
 

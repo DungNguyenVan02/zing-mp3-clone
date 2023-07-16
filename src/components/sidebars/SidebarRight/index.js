@@ -7,7 +7,6 @@ const cx = classNames.bind(styles);
 
 function SidebarRight() {
     const isOpen = useSelector(openSidebarSelector);
-    console.log(isOpen);
     return (
         <h3
             className={cx('wrapper', {

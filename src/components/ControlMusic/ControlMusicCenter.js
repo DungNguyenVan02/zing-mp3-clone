@@ -1,10 +1,27 @@
+import { useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './ControlMusic.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackwardStep, faForwardStep, faPlay, faRepeat, faShuffle } from '@fortawesome/free-solid-svg-icons';
+import { faBackwardStep, faForwardStep, faRepeat, faShuffle } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
+import { playingSongSelector } from '~/redux/selector';
+import { PauseIcon, PlayIcon } from '../icons';
+import { useDispatch } from 'react-redux';
+import * as actions from '~/redux/actions';
 
 const cx = classNames.bind(styles);
-function ControlMusicCenter() {
+function ControlMusicCenter({ data }) {
+    const dispatch = useDispatch();
+    const isPlaying = useSelector(playingSongSelector);
+    console.log(isPlaying);
+    const audioRef = useRef();
+
+    const handleTogglePlay = () => {
+        dispatch(actions.setPlaying(!isPlaying));
+    };
+
+    // const handlePlay = () => {};
+
     return (
         <div className={cx('control-center')}>
             <div className={cx('player-top')}>
@@ -14,9 +31,8 @@ function ControlMusicCenter() {
                 <span className={cx('icon')}>
                     <FontAwesomeIcon icon={faBackwardStep} />
                 </span>
-                <span className={`${styles.icon} ${styles.outline}`}>
-                    <FontAwesomeIcon icon={faPlay} />
-                    {/* <FontAwesomeIcon icon={faPause} /> */}
+                <span className={`${styles.icon} ${styles.outline}`} onClick={handleTogglePlay}>
+                    {isPlaying ? <PauseIcon /> : <PlayIcon />}
                 </span>
                 <span className={cx('icon')}>
                     <FontAwesomeIcon icon={faForwardStep} />
@@ -32,6 +48,7 @@ function ControlMusicCenter() {
                 </div>
                 <span className={cx('time')}>3:00</span>
             </div>
+            <audio ref={audioRef} src={data}></audio>
         </div>
     );
 }

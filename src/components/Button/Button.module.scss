@@ -4,8 +4,7 @@
     justify-content: flex-start;
     font-size: 1.4rem;
     font-weight: 700;
-    height: 100%;
-    width: 100%;
+    height: auto;
     padding: 4px 24px;
     background-color: transparent;
     cursor: pointer;
@@ -32,6 +31,17 @@
 }
 
 //button type
+
+.primary {
+    color: var(--white-color);
+    font-size: 1.4rem;
+    font-weight: 400;
+    background-color: var(--primary);
+    height: 36px;
+
+    border-radius: 30px;
+    justify-content: center;
+}
 
 .outline {
     color: var(--white-color);

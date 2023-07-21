@@ -1,18 +1,19 @@
 .wrapper {
     padding-top: 30px;
+}
+.container {
     display: flex;
 }
 
 .wrapper-left {
     text-align: center;
-    width: 30%;
+    width: 25%;
     padding: 0 8px;
 }
 
 .thumbnail-album {
     position: relative;
     max-width: 300px;
-    max-height: 300px;
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
@@ -24,6 +25,7 @@
         .thumbnail-link {
             -webkit-filter: brightness(75%);
             filter: brightness(75%);
+            transform: scale(1.05);
         }
     }
     .thumbnail-link {
@@ -74,6 +76,20 @@
 }
 
 .wrapper-right {
-    width: 70%;
+    width: 75%;
     padding: 0 8px;
+
+    .wrapper-right-header {
+        display: flex;
+        padding-bottom: 10px;
+
+        h4:first-child {
+            color: var(--text-secondary);
+        }
+        h4 {
+            margin-right: 6px;
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+    }
 }

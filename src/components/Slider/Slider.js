@@ -30,9 +30,13 @@ function Slider() {
         if (item?.type === 1) {
             dispatch(actions.setCurrentSongId(item.encodeId));
             dispatch(actions.setPlaying(true));
+            dispatch(actions.setAlbum(false));
         } else if (item?.type === 4) {
+            dispatch(actions.setAlbum(true));
             const pathAlbum = item.link.split('.')[0];
             navigate(pathAlbum);
+        } else {
+            dispatch(actions.setAlbum(false));
         }
     };
 

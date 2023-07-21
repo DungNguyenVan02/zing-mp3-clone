@@ -20,11 +20,13 @@
     --layout-header-bg: rgba(23, 15, 35, 0.9);
     --player-bg: #130c1c;
     --border-player: hsla(0, 0%, 100%, 0.1);
+    --border-secondary: hsla(0, 0%, 100%, 0.05);
     --bgr-button: hsla(0, 0%, 100%, 0.1);
     --sidebar-popup-bg: #2a213a;
     --primary-bg: #34224f;
     --purple-primary: #3560f5;
     --progressbar-player-bg: hsla(0, 0%, 100%, 0.3);
+    --bgr-hover: hsla(0, 0%, 100%, 0.1);
 
     //Fonts
     --font-family: 'Inter', sans-serif;
@@ -60,7 +62,8 @@ html *::-webkit-scrollbar {
 
 html *::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: rgba(22, 24, 35, 0.15);
+    // background-color: hsla(0, 0%, 100%, 0.3);
+    background-color: hsla(274, 95%, 45%, 0.3);
 }
 
 html *::-webkit-scrollbar-track {

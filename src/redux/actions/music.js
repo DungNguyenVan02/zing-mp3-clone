@@ -13,3 +13,10 @@ export const setPlaying = (isPlay = false) => {
         payload: isPlay,
     };
 };
+
+export const setAlbum = (isAlbum) => {
+    return {
+        type: actionTypes.SET_ALBUM,
+        payload: isAlbum,
+    };
+};

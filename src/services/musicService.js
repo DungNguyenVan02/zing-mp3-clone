@@ -7,6 +7,7 @@ export const getInfo = async (id) => {
                 id: id,
             },
         });
+
         return result.data;
     } catch (error) {
         console.log(error);

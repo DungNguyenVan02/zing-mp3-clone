@@ -30,5 +30,9 @@ const config = {
         component: Album,
         path: '/album/:title/:id',
     },
+    playlist: {
+        component: Album,
+        path: '/playlist/:title/:id',
+    },
 };
 export default config;

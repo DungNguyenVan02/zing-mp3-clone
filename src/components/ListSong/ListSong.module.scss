@@ -1,0 +1,110 @@
+.wrapper {
+    padding: 10px;
+    max-height: 500px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: transparent;
+    }
+}
+.title {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px 10px 10px;
+    border-bottom: 1px solid var(--border-secondary);
+}
+.song-list {
+    .song-list-info {
+        margin: 20px 0;
+        font-size: 1.3rem;
+        color: var(--text-secondary);
+    }
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 1px solid var(--border-secondary);
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    &:hover {
+        background-color: var(--bgr-hover);
+        .icon {
+            display: block;
+        }
+        .img-link {
+            -webkit-filter: brightness(50%);
+            filter: brightness(50%);
+        }
+    }
+}
+.info {
+    display: flex;
+    align-items: center;
+    flex: 4;
+
+    .title-song {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    .singer {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+.img {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 12px;
+
+    .img-link {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: all 0.2s linear;
+    }
+
+    .icon {
+        position: absolute;
+        display: none;
+        top: 50%;
+        right: 0;
+        transform: translate(-30%, -40%);
+    }
+}
+
+.album {
+    flex: 2;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+.duration {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}

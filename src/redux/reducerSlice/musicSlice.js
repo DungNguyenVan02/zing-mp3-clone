@@ -2,6 +2,7 @@ import actionTypes from '../actions/actionTypes';
 const initState = {
     currentSongId: null,
     isPlaying: false,
+    isAlbum: false,
 };
 function musicSlice(state = initState, action) {
     switch (action.type) {
@@ -14,6 +15,11 @@ function musicSlice(state = initState, action) {
             return {
                 ...state,
                 isPlaying: action.payload,
+            };
+        case actionTypes.SET_ALBUM:
+            return {
+                ...state,
+                isAlbum: action.payload,
             };
         default:
             return state;

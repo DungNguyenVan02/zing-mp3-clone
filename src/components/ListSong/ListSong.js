@@ -3,9 +3,11 @@ import classNames from 'classnames/bind';
 import styles from './ListSong.module.scss';
 import ListItem from './ListItem';
 import moment from 'moment';
+import { useSelector } from 'react-redux';
 const cx = classNames.bind(styles);
 
-function ListSong({ songs }) {
+function ListSong({ total, totalDuration }) {
+    const { songs } = useSelector((state) => state.music);
     return (
         <div className={cx('wrapper')}>
             <div className={cx('title')}>
@@ -14,14 +16,14 @@ function ListSong({ songs }) {
                 <span style={{ display: 'flex', flex: 1, justifyContent: 'flex-end' }}>Thời gian</span>
             </div>
             <div className={cx('song-list')}>
-                {songs?.items.map((song) => (
+                {songs?.map((song) => (
                     <ListItem key={song?.encodeId} songData={song} />
                 ))}
                 <div className={cx('song-list-info')}>
-                    <span className={cx('total')}>{`${songs?.total} bài hát`}</span>
+                    <span className={cx('total')}>{`${total} bài hát`}</span>
                     {' - '}
-                    <span className={cx('total')}>{`${moment.utc(songs?.totalDuration * 1000).format('HH')} giờ ${moment
-                        .utc(songs?.totalDuration * 1000)
+                    <span className={cx('total')}>{`${moment.utc(totalDuration * 1000).format('HH')} giờ ${moment
+                        .utc(totalDuration * 1000)
                         .format('mm')} phút`}</span>
                 </div>
             </div>

@@ -14,9 +14,9 @@ export const setPlaying = (isPlay = false) => {
     };
 };
 
-export const setAlbum = (isAlbum) => {
+export const setSongs = (songs) => {
     return {
-        type: actionTypes.SET_ALBUM,
-        payload: isAlbum,
+        type: actionTypes.LIST_SONGS,
+        payload: songs,
     };
 };

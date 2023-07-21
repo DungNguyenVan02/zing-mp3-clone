@@ -7,7 +7,7 @@ export const getHome = () => async (dispatch) => {
         if (responsive?.err === 0) {
             dispatch({
                 type: actionTypes.GET_HOME,
-                banners: responsive?.data?.items.find((item) => item.sectionType === 'banner').items || null,
+                payload: responsive?.data?.items,
             });
         } else {
             dispatch({
@@ -23,9 +23,9 @@ export const getHome = () => async (dispatch) => {
     }
 };
 
-export const setOpenSidebar = (payload) => {
+export const setOpenSidebar = (isOpen) => {
     return {
         type: actionTypes.SET_OPEN_SIDE_BAR_RIGHT,
-        payload,
+        payload: isOpen,
     };
 };

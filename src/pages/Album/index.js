@@ -2,9 +2,11 @@ import classNames from 'classnames/bind';
 import moment from 'moment/moment';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import styles from './Album.module.scss';
 import * as apis from '~/services';
+import * as actions from '~/redux/actions';
 import { HeartIcon, MenuIcon, PlayIcon } from '~/components/icons';
 import Button from '~/components/Button';
 import ListSong from '~/components/ListSong';
@@ -13,16 +15,21 @@ const cx = classNames.bind(styles);
 
 function Album() {
     const { id } = useParams();
+    const dispatch = useDispatch();
+
     const [playList, setPlayList] = useState({});
 
     useEffect(() => {
         const fetchApi = async () => {
             const response = await apis.getDetailPlayList(id);
             if (response.err === 0) {
-                setPlayList(response.data);
+                setPlayList(response?.data);
+                console.log(response);
+                dispatch(actions.setSongs(response?.data?.song?.items));
             }
         };
         fetchApi();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     return (
@@ -62,7 +69,7 @@ function Album() {
                         <h4>Lời tựa</h4>
                         <h4>{playList?.sortDescription}</h4>
                     </div>
-                    <ListSong songs={playList?.song} />
+                    <ListSong total={playList?.song?.total} totalDuration={playList?.song?.totalDuration} />
                 </div>
             </div>
             <div style={{ height: 600 }}>hhhhh</div>

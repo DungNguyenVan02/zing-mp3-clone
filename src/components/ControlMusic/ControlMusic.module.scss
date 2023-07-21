@@ -85,6 +85,10 @@
     .disabled {
         color: red;
     }
+    .random,
+    .repeat {
+        color: var(--primary);
+    }
 }
 
 .player-top {

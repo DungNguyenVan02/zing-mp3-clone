@@ -1,16 +1,15 @@
 import classNames from 'classnames/bind';
 import styles from './SidebarRight.module.scss';
 import { useSelector } from 'react-redux';
-import { openSidebarSelector } from '~/redux/selector';
 
 const cx = classNames.bind(styles);
 
 function SidebarRight() {
-    const isOpen = useSelector(openSidebarSelector);
+    const { isOpenSidebar } = useSelector((state) => state.home);
     return (
         <h3
             className={cx('wrapper', {
-                active: isOpen,
+                active: isOpenSidebar,
             })}
         >
             sidebar right

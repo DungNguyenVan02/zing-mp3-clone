@@ -5,7 +5,6 @@ import styles from './ControlMusic.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackwardStep, faForwardStep, faRepeat, faShuffle } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { playingSongSelector, albumSelector } from '~/redux/selector';
 import { PauseIcon, PlayIcon } from '../icons';
 import * as actions from '~/redux/actions';
 
@@ -13,9 +12,11 @@ const cx = classNames.bind(styles);
 
 function ControlMusicCenter({ audio, duration, errAudio }) {
     const dispatch = useDispatch();
-    const isPlaying = useSelector(playingSongSelector);
-    const isAlbum = useSelector(albumSelector);
+    const { currentSongId, isPlaying, songs } = useSelector((state) => state.music);
+
     const [currentTime, setCurrentTime] = useState('00:00');
+    const [isRandom, setIsRandom] = useState(false);
+    const [isRepeat, setIsRepeat] = useState(false);
 
     const progressBar = useRef();
     const progressArea = useRef();
@@ -64,18 +65,53 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
     };
 
     const handleNextSong = () => {
-        if (isAlbum) {
-            console.log(123);
+        if (songs) {
+            let currentSong;
+            songs?.find((song, index) => {
+                if (song?.encodeId === currentSongId) {
+                    currentSong = index + 1;
+                }
+                return currentSong;
+            });
+            if (currentSong >= songs.length) {
+                currentSong = 0;
+            }
+            console.log(currentSong);
+            dispatch(actions.setCurrentSongId(songs[currentSong]?.encodeId));
         }
+    };
+
+    const handlePrevSong = () => {
+        let currentSong;
+        songs?.find((song, index) => {
+            if (song?.encodeId === currentSongId) {
+                currentSong = index - 1;
+            }
+            return currentSong;
+        });
+        if (currentSong < 0) {
+            currentSong = songs.length - 1;
+        }
+        console.log(currentSong);
+        dispatch(actions.setCurrentSongId(songs[currentSong]?.encodeId));
     };
 
     return (
         <div className={cx('control-center')}>
             <div className={cx('player-top')}>
-                <span className={cx('icon')}>
+                <span
+                    className={cx('icon', {
+                        random: isRandom,
+                    })}
+                    onClick={() => setIsRandom(!isRandom)}
+                >
                     <FontAwesomeIcon icon={faShuffle} />
                 </span>
-                <span className={cx('icon')}>
+                <span
+                    className={cx('icon')}
+                    style={songs.length > 0 ? {} : { opacity: 0.5, cursor: 'no-drop' }}
+                    onClick={handlePrevSong}
+                >
                     <FontAwesomeIcon icon={faBackwardStep} />
                 </span>
                 <span className={`${styles.icon} ${styles.outline}`} onClick={handleTogglePlay}>
@@ -83,12 +119,17 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
                 </span>
                 <span
                     className={cx('icon')}
-                    style={isAlbum ? {} : { opacity: 0.5, cursor: 'no-drop' }}
+                    style={songs.length > 0 ? {} : { opacity: 0.5, cursor: 'no-drop' }}
                     onClick={handleNextSong}
                 >
                     <FontAwesomeIcon icon={faForwardStep} />
                 </span>
-                <span className={cx('icon')}>
+                <span
+                    className={cx('icon', {
+                        repeat: isRepeat,
+                    })}
+                    onClick={() => setIsRepeat(!isRepeat)}
+                >
                     <FontAwesomeIcon icon={faRepeat} />
                 </span>
             </div>

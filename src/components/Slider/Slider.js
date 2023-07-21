@@ -8,7 +8,6 @@ import styles from './Slider.module.scss';
 import * as actions from '~/redux/actions';
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { bannerSelector } from '~/redux/selector';
 import { Pagination, Navigation, Autoplay, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,7 +20,7 @@ function Slider() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const bannerList = useSelector(bannerSelector);
+    const { banners } = useSelector((state) => state.home);
 
     const navigationPrevRef = useRef(null);
     const navigationNextRef = useRef(null);
@@ -30,17 +29,16 @@ function Slider() {
         if (item?.type === 1) {
             dispatch(actions.setCurrentSongId(item.encodeId));
             dispatch(actions.setPlaying(true));
-            dispatch(actions.setAlbum(false));
+            dispatch(actions.setSongs(false));
         } else if (item?.type === 4) {
-            dispatch(actions.setAlbum(true));
             const pathAlbum = item.link.split('.')[0];
             navigate(pathAlbum);
         } else {
-            dispatch(actions.setAlbum(false));
+            dispatch(actions.setSongs(false));
         }
     };
 
-    const render = bannerList?.map((item) => {
+    const render = banners?.map((item) => {
         return (
             <SwiperSlide key={item.encodeId}>
                 <img className={cx('item')} src={item.banner} alt="" onClick={() => handleClick(item)} />

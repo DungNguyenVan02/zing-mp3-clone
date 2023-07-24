@@ -8,7 +8,9 @@
     padding: 4px 24px;
     background-color: transparent;
     cursor: pointer;
+    color: #fff;
     user-select: none;
+
     + .wrapper {
         margin-left: 8px;
     }
@@ -53,7 +55,7 @@
 
 .textBtn {
     font-weight: 400;
-    // color: var(--text-color);
+    color: var(--text-color);
     &:hover {
         opacity: 0.8;
     }
@@ -71,8 +73,18 @@
     border-radius: 50%;
     background-color: var(--bgr-button);
 }
-.bgk-n {
-    background-color: transparent;
+
+.circleOutline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    line-height: 0;
+    padding: 0;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 50%;
 }
 //button size
 .small {

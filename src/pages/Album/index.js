@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import moment from 'moment/moment';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Album.module.scss';
 import * as apis from '~/services';
@@ -10,6 +10,7 @@ import * as actions from '~/redux/actions';
 import { HeartIcon, MenuIcon, PlayIcon } from '~/components/icons';
 import Button from '~/components/Button';
 import ListSong from '~/components/ListSong';
+import Playing from '~/components/Animation';
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +18,7 @@ function Album() {
     const { id } = useParams();
     const dispatch = useDispatch();
 
+    const { isPlaying } = useSelector((state) => state.music);
     const [playList, setPlayList] = useState({});
 
     useEffect(() => {
@@ -24,7 +26,6 @@ function Album() {
             const response = await apis.getDetailPlayList(id);
             if (response.err === 0) {
                 setPlayList(response?.data);
-                console.log(response);
                 dispatch(actions.setSongs(response?.data?.song?.items));
             }
         };
@@ -37,9 +38,20 @@ function Album() {
             <div className={cx('container')}>
                 <div className={cx('wrapper-left')}>
                     <div className={cx('thumbnail-album')}>
-                        <img className={cx('thumbnail-link')} src={playList?.thumbnailM} alt="" />
-                        <div className={cx('thumbnail-overlay')}>
-                            <PlayIcon width="2.6rem" height="2.6rem" />
+                        <img
+                            className={cx('thumbnail-link', {
+                                playAnimation: isPlaying,
+                                removeAnimation: !isPlaying,
+                            })}
+                            src={playList?.thumbnailM}
+                            alt=""
+                        />
+                        <div
+                            className={cx('thumbnail-overlay', {
+                                playing: isPlaying,
+                            })}
+                        >
+                            {isPlaying ? <Playing /> : <PlayIcon width="2.6rem" height="2.6rem" />}
                         </div>
                     </div>
                     <div className={cx('thumbnail-body')}>

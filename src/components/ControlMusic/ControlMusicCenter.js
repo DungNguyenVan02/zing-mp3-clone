@@ -32,6 +32,37 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [audio, errAudio]);
 
+    useEffect(() => {
+        const handlePercentSong = () => {
+            const currentTime = audio.currentTime;
+            const progressTime = (currentTime / duration) * 100;
+            progressArea.current.style.width = progressTime + '%';
+
+            const minutes = Math.floor(currentTime >= 60 ? currentTime / 60 : '0');
+            const timeRemaining = currentTime - minutes * 60;
+            const second = Math.floor(timeRemaining < 60 ? timeRemaining : 0);
+            const timeRender = `${minutes < 10 ? '0' + minutes : minutes}:${second < 10 ? '0' + second : second}`;
+
+            setCurrentTime(timeRender);
+        };
+        const handleEnded = () => {
+            if (isRepeat) {
+                audio.play();
+            } else {
+                handleNextSong();
+            }
+        };
+        audio.addEventListener('timeupdate', handlePercentSong);
+        audio.addEventListener('ended', handleEnded);
+
+        return () => {
+            audio.removeEventListener('ended', handleEnded);
+            audio.removeEventListener('timeupdate', handlePercentSong);
+        };
+    });
+
+    useEffect(() => {});
+
     const handleTogglePlay = () => {
         if (isPlaying) {
             audio.pause();
@@ -41,20 +72,6 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
             dispatch(actions.setPlaying(true));
         }
     };
-
-    const handlePercentSong = () => {
-        const currentTime = audio.currentTime;
-        const progressTime = (currentTime / duration) * 100;
-        progressArea.current.style.width = progressTime + '%';
-
-        const minutes = Math.floor(currentTime >= 60 ? currentTime / 60 : '0');
-        const timeRemaining = currentTime - minutes * 60;
-        const second = Math.floor(timeRemaining < 60 ? timeRemaining : 0);
-        const timeRender = `${minutes < 10 ? '0' + minutes : minutes}:${second < 10 ? '0' + second : second}`;
-
-        setCurrentTime(timeRender);
-    };
-    audio.addEventListener('timeupdate', handlePercentSong);
 
     const handleProgress = (e) => {
         const clickOffSetX = e.nativeEvent.offsetX;
@@ -66,18 +83,22 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
 
     const handleNextSong = () => {
         if (songs) {
-            let currentSong;
-            songs?.find((song, index) => {
-                if (song?.encodeId === currentSongId) {
-                    currentSong = index + 1;
+            if (isRandom) {
+                handleRandomSong();
+            } else {
+                let currentSong;
+                songs?.find((song, index) => {
+                    if (song?.encodeId === currentSongId) {
+                        currentSong = index + 1;
+                    }
+                    return currentSong;
+                });
+                if (currentSong >= songs.length) {
+                    currentSong = 0;
                 }
-                return currentSong;
-            });
-            if (currentSong >= songs.length) {
-                currentSong = 0;
+                dispatch(actions.setCurrentSongId(songs[currentSong]?.encodeId));
+                dispatch(actions.setPlaying(true));
             }
-            console.log(currentSong);
-            dispatch(actions.setCurrentSongId(songs[currentSong]?.encodeId));
         }
     };
 
@@ -94,6 +115,32 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
         }
         console.log(currentSong);
         dispatch(actions.setCurrentSongId(songs[currentSong]?.encodeId));
+    };
+
+    const handleRandomSong = () => {
+        let currentSong;
+        let filterRandom;
+        let newCurrentSong;
+        const arrRandom = [];
+
+        songs.forEach((item, index) => {
+            if (item?.isWorldWide === true) {
+                arrRandom.push(index);
+            }
+        });
+        songs?.find((song, index) => {
+            if (song?.encodeId === currentSongId) {
+                currentSong = index;
+            }
+            return currentSong;
+        });
+
+        do {
+            filterRandom = Math.floor(Math.random() * arrRandom.length);
+        } while (filterRandom === arrRandom.includes(currentSong));
+
+        newCurrentSong = arrRandom[filterRandom];
+        dispatch(actions.setCurrentSongId(songs[newCurrentSong]?.encodeId));
     };
 
     return (

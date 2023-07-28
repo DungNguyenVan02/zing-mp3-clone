@@ -2,12 +2,18 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 240px;
 }
+
 .content {
     margin-left: 240px;
     position: relative;
     overflow: hidden;
+
+    &:hover {
+        .container::-webkit-scrollbar-thumb {
+            background-color: hsla(274, 93%, 48%, 0.3);
+        }
+    }
 
     .header {
         position: fixed;
@@ -20,6 +26,20 @@
         margin-top: 70px;
         padding: 0 59px;
         background-color: var(--player-bg);
+        height: calc(100vh - (var(--height-control) + var(--height-header)));
+        overflow-y: auto;
+    }
+    .loading-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: var(--player-bg);
+        z-index: 9999;
     }
 }
 

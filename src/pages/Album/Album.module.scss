@@ -1,6 +1,7 @@
 .wrapper {
     padding-top: 30px;
 }
+
 .container {
     display: flex;
 }
@@ -62,7 +63,6 @@
 .removeAnimation {
     -webkit-animation: rotateNone 1s linear;
     animation: rotateNone 1s linear;
-    transition: all 10s linear !important;
 }
 @keyframes rotate {
     to {

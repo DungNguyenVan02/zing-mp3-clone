@@ -6,35 +6,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBackwardStep, faForwardStep, faRepeat, faShuffle } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { PauseIcon, PlayIcon } from '../icons';
+import { Spinner as SpinnerLoading } from '../Animation';
+
 import * as actions from '~/redux/actions';
 
 const cx = classNames.bind(styles);
 
 function ControlMusicCenter({ audio, duration, errAudio }) {
     const dispatch = useDispatch();
-    const { currentSongId, isPlaying, songs } = useSelector((state) => state.music);
-
+    const { currentSongId, isPlaying, isLoading, songs, volume } = useSelector((state) => state.music);
     const [currentTime, setCurrentTime] = useState('00:00');
     const [isRandom, setIsRandom] = useState(false);
     const [isRepeat, setIsRepeat] = useState(false);
 
     const progressBar = useRef();
     const progressArea = useRef();
+    const audioRef = useRef();
 
     useEffect(() => {
-        if (isPlaying) {
+        if (isPlaying && audioRef.current) {
             progressArea.current.width = 0;
-            audio.load();
-            audio.play();
+            audioRef.current.load();
+            audioRef.current.play();
         } else {
-            audio.pause();
+            audioRef.current.pause();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [audio, errAudio]);
 
     useEffect(() => {
+        audioRef.current.volume = volume / 100;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [volume, audio]);
+
+    useEffect(() => {
         const handlePercentSong = () => {
-            const currentTime = audio.currentTime;
+            const currentTime = audioRef.current.currentTime;
             const progressTime = (currentTime / duration) * 100;
             progressArea.current.style.width = progressTime + '%';
 
@@ -47,28 +54,26 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
         };
         const handleEnded = () => {
             if (isRepeat) {
-                audio.play();
+                audioRef.current.play();
             } else {
                 handleNextSong();
             }
         };
-        audio.addEventListener('timeupdate', handlePercentSong);
-        audio.addEventListener('ended', handleEnded);
+        audioRef.current?.addEventListener('timeupdate', handlePercentSong);
+        audioRef.current?.addEventListener('ended', handleEnded);
 
         return () => {
-            audio.removeEventListener('ended', handleEnded);
-            audio.removeEventListener('timeupdate', handlePercentSong);
+            audioRef.current?.removeEventListener('ended', handleEnded);
+            audioRef.current?.removeEventListener('timeupdate', handlePercentSong);
         };
     });
 
-    useEffect(() => {});
-
     const handleTogglePlay = () => {
         if (isPlaying) {
-            audio.pause();
+            audioRef.current.pause();
             dispatch(actions.setPlaying(false));
         } else {
-            audio.play();
+            audioRef.current.play();
             dispatch(actions.setPlaying(true));
         }
     };
@@ -76,9 +81,9 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
     const handleProgress = (e) => {
         const clickOffSetX = e.nativeEvent.offsetX;
         const progressWidthValue = Math.floor(progressBar.current.getBoundingClientRect().width);
-        audio.currentTime = Math.floor((clickOffSetX * duration) / progressWidthValue);
+        audioRef.current.currentTime = Math.floor((clickOffSetX * duration) / progressWidthValue);
         dispatch(actions.setPlaying(true));
-        audio.play();
+        audioRef.current.play();
     };
 
     const handleNextSong = () => {
@@ -113,7 +118,6 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
         if (currentSong < 0) {
             currentSong = songs.length - 1;
         }
-        console.log(currentSong);
         dispatch(actions.setCurrentSongId(songs[currentSong]?.encodeId));
     };
 
@@ -162,7 +166,7 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
                     <FontAwesomeIcon icon={faBackwardStep} />
                 </span>
                 <span className={`${styles.icon} ${styles.outline}`} onClick={handleTogglePlay}>
-                    {isPlaying ? <PauseIcon /> : <PlayIcon />}
+                    {isLoading ? <SpinnerLoading /> : isPlaying ? <PauseIcon /> : <PlayIcon />}
                 </span>
                 <span
                     className={cx('icon')}
@@ -188,6 +192,7 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
                 <span className={cx('total-time')}>
                     {duration ? moment.utc(duration * 1000).format('mm:ss') : '00:00'}
                 </span>
+                <audio src={audio} ref={audioRef} />
             </div>
         </div>
     );

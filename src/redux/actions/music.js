@@ -20,3 +20,17 @@ export const setSongs = (songs) => {
         payload: songs,
     };
 };
+
+export const setVolumeSong = (volume) => {
+    return {
+        type: actionTypes.SET_VOLUME,
+        payload: volume,
+    };
+};
+
+export const setIsLoading = (isLoading) => {
+    return {
+        type: actionTypes.SET_LOADING_SONG,
+        payload: isLoading,
+    };
+};

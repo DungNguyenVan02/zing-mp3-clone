@@ -10,12 +10,11 @@ function SectionItem({ data }) {
 
     const handleClick = () => {
         const path = data?.link.split('.')[0];
-
         navigate(path);
     };
 
     return (
-        <div className={cx('section-card', 'col l-2-4')}>
+        <div className={cx('section-card', 'col l-2-4 m-3 s-6')}>
             <div onClick={handleClick}>
                 <figure className={cx('wrap-img')}>
                     <img className={cx('img')} src={data?.thumbnailM} alt="" />
@@ -33,7 +32,8 @@ function SectionItem({ data }) {
                 </figure>
             </div>
             <div className={cx('section-content')}>
-                <h3 className={cx('sub-title')}>{data.sortDescription}</h3>
+                <h3 className={cx('title')}>{data?.title}</h3>
+                <h3 className={cx('sub-title')}>{data?.sortDescription || data?.artistsNames}</h3>
             </div>
         </div>
     );

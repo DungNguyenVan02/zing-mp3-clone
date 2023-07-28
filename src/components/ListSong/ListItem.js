@@ -5,13 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './ListSong.module.scss';
 import { NoteMusicIcon, PlayIcon, VipIcon } from '../icons';
 import * as actions from '~/redux/actions';
-import Playing from '../Animation/Playing';
+import { Playing, Spinner as SpinnerLoading } from '../Animation';
 
 const cx = classNames.bind(styles);
 
 function ListItem({ songData }) {
     const dispatch = useDispatch();
-    const { currentSongId, isPlaying } = useSelector((state) => state.music);
+    const { currentSongId, isPlaying, isLoading } = useSelector((state) => state.music);
     const handleClickSong = (id) => {
         dispatch(actions.setCurrentSongId(id));
         dispatch(actions.setPlaying(true));
@@ -27,7 +27,19 @@ function ListItem({ songData }) {
                 <NoteMusicIcon />
                 <div className={cx('img')}>
                     <img className={cx('img-link')} src={songData?.thumbnail} alt="thumbnail" />
-                    <div className={cx('icon')}>{isPlaying ? <Playing /> : <PlayIcon />}</div>
+                    <div
+                        className={cx('icon', {
+                            iconShow: songData.encodeId === currentSongId && !isLoading,
+                        })}
+                    >
+                        {isLoading && songData.encodeId === currentSongId ? (
+                            <SpinnerLoading />
+                        ) : isPlaying && songData.encodeId === currentSongId && !isLoading ? (
+                            <Playing height={24} />
+                        ) : (
+                            <PlayIcon />
+                        )}
+                    </div>
                 </div>
                 <div>
                     <div style={{ display: 'flex' }}>

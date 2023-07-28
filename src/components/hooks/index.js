@@ -1,1 +1,1 @@
-export * from './useTime';
+export { default as useDebounce } from './useDebounce';

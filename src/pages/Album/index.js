@@ -10,7 +10,7 @@ import * as actions from '~/redux/actions';
 import { HeartIcon, MenuIcon, PlayIcon } from '~/components/icons';
 import Button from '~/components/Button';
 import ListSong from '~/components/ListSong';
-import Playing from '~/components/Animation';
+import { Playing } from '~/components/Animation';
 
 const cx = classNames.bind(styles);
 
@@ -18,12 +18,14 @@ function Album() {
     const { id } = useParams();
     const dispatch = useDispatch();
 
-    const { isPlaying } = useSelector((state) => state.music);
+    const { isPlaying, isLoading } = useSelector((state) => state.music);
     const [playList, setPlayList] = useState({});
 
     useEffect(() => {
         const fetchApi = async () => {
+            dispatch(actions.setLoadingPage(true));
             const response = await apis.getDetailPlayList(id);
+            dispatch(actions.setLoadingPage(false));
             if (response.err === 0) {
                 setPlayList(response?.data);
                 dispatch(actions.setSongs(response?.data?.song?.items));
@@ -40,7 +42,7 @@ function Album() {
                     <div className={cx('thumbnail-album')}>
                         <img
                             className={cx('thumbnail-link', {
-                                playAnimation: isPlaying,
+                                playAnimation: isPlaying && !isLoading,
                                 removeAnimation: !isPlaying,
                             })}
                             src={playList?.thumbnailM}
@@ -51,7 +53,7 @@ function Album() {
                                 playing: isPlaying,
                             })}
                         >
-                            {isPlaying ? <Playing /> : <PlayIcon width="2.6rem" height="2.6rem" />}
+                            {isPlaying && !isLoading ? <Playing /> : <PlayIcon width="2.6rem" height="2.6rem" />}
                         </div>
                     </div>
                     <div className={cx('thumbnail-body')}>
@@ -84,7 +86,6 @@ function Album() {
                     <ListSong total={playList?.song?.total} totalDuration={playList?.song?.totalDuration} />
                 </div>
             </div>
-            <div style={{ height: 600 }}>hhhhh</div>
         </div>
     );
 }

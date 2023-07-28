@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import { Audio } from 'react-loader-spinner';
 
-function Player() {
+function Player({ height = 26, width = 26 }) {
     return (
         <Audio
-            height="26"
-            width="26"
+            height={height}
+            width={width}
             color="#fff"
             ariaLabel="audio-loading"
             wrapperStyle={{}}

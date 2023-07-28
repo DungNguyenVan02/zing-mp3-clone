@@ -6,15 +6,24 @@ import SidebarLeft from '~/components/sidebars/SidebarLeft';
 import SidebarRight from '~/components/sidebars/SidebarRight';
 import Header from '~/components/Header';
 import ControlMusic from '~/components/ControlMusic/';
+import { Loading } from '~/components/Animation';
+import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
+    const { isLoadingPage } = useSelector((state) => state.home);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('sidebar')}>
                 <SidebarLeft />
             </div>
             <div className={cx('content')}>
+                {isLoadingPage && (
+                    <div className={cx('loading-page')}>
+                        <Loading />
+                    </div>
+                )}
                 <div className={cx('header')}>
                     <Header />
                 </div>

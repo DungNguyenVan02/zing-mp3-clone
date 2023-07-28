@@ -40,17 +40,18 @@
     font-weight: 400;
     background-color: var(--primary);
     height: 36px;
-
     border-radius: 30px;
     justify-content: center;
 }
 
 .outline {
+    font-size: 1.2rem;
     color: var(--white-color);
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-secondary);
     font-weight: 400;
     text-transform: uppercase;
-    background-color: var(--primary);
+    border-radius: 30px;
+    justify-content: center;
 }
 
 .textBtn {

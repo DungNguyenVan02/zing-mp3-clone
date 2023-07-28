@@ -354,7 +354,7 @@ export const VolumeIcon = ({ className, width = '2rem', height = '2rem' }) => (
         className={className}
         width={width}
         height={height}
-        viewBox="0 0 576 512"
+        viewBox="0 0 576 374"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
     >
@@ -370,7 +370,7 @@ export const MuteIcon = ({ className, width = '2rem', height = '2rem' }) => (
         className={className}
         width={width}
         height={height}
-        viewBox="0 0 576 512"
+        viewBox="0 0 576 374"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
     >

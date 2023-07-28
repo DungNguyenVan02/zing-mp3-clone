@@ -29,3 +29,10 @@ export const setOpenSidebar = (isOpen) => {
         payload: isOpen,
     };
 };
+
+export const setLoadingPage = (isLoading) => {
+    return {
+        type: actionTypes.SET_LOADING_PAGE,
+        payload: isLoading,
+    };
+};

@@ -29,6 +29,10 @@ const publicRoutes = [
         path: config.playlist.path,
         component: config.playlist.component,
     },
+    {
+        path: config.weekRank.path,
+        component: config.weekRank.component,
+    },
 ];
 const privateRoutes = [];
 

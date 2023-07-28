@@ -44,6 +44,10 @@
 
     &.active {
         background-color: var(--bgr-hover);
+        .img-link {
+            -webkit-filter: brightness(50%);
+            filter: brightness(50%);
+        }
     }
 }
 .info {
@@ -90,11 +94,11 @@
     .icon {
         position: absolute;
         display: none;
-        top: 50%;
-        right: 0;
-        transform: translate(-30%, -40%);
+        top: 54%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
-    .showIcon {
+    .iconShow {
         display: block;
     }
 }

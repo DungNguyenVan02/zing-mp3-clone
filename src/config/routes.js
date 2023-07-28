@@ -4,6 +4,7 @@ import NewMusic from '~/pages/NewMusic';
 import Radio from '~/pages/Radio';
 import Top100 from '~/pages/Top100';
 import Album from '~/pages/Album';
+import WeekRank from '~/pages/WeekRank';
 
 const config = {
     home: {
@@ -33,6 +34,10 @@ const config = {
     playlist: {
         component: Album,
         path: '/playlist/:title/:id',
+    },
+    weekRank: {
+        component: WeekRank,
+        path: '/zing-chart-tuan/:title/:id',
     },
 };
 export default config;

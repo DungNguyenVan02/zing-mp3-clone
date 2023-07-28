@@ -3,6 +3,8 @@ const initState = {
     currentSongId: null,
     songs: [],
     isPlaying: false,
+    isLoading: true,
+    volume: 70,
 };
 function musicSlice(state = initState, action) {
     switch (action.type) {
@@ -20,6 +22,16 @@ function musicSlice(state = initState, action) {
             return {
                 ...state,
                 songs: action.payload,
+            };
+        case actionTypes.SET_LOADING_SONG:
+            return {
+                ...state,
+                isLoading: action.payload,
+            };
+        case actionTypes.SET_VOLUME:
+            return {
+                ...state,
+                volume: action.payload,
             };
         default:
             return state;

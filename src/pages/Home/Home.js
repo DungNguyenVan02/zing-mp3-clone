@@ -21,6 +21,8 @@ function Home() {
         editorTheme9,
         editorTheme10,
         editorTheme11,
+        chart,
+        rank,
     } = useSelector((state) => state.home);
     useEffect(() => {
         dispatch(actions.getHome());
@@ -36,7 +38,7 @@ function Home() {
             <Section data={editorTheme5} />
             <Section data={editorTheme6} />
             <SectionTop data={editorTheme7} />
-            <ZingChart data={editorTheme8} />
+            <ZingChart data={editorTheme8} chart={chart} rank={rank} />
             <Section data={editorTheme9} />
             <Section data={editorTheme10} />
             <Radio data={editorTheme11} />

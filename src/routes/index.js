@@ -33,6 +33,10 @@ const publicRoutes = [
         path: config.weekRank.path,
         component: config.weekRank.component,
     },
+    {
+        path: config.zingChart.path,
+        component: config.zingChart.component,
+    },
 ];
 const privateRoutes = [];
 

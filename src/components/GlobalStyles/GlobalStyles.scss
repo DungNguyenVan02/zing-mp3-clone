@@ -27,6 +27,8 @@
     --purple-primary: #3560f5;
     --progressbar-player-bg: hsla(0, 0%, 100%, 0.3);
     --bgr-hover: hsla(0, 0%, 100%, 0.1);
+    --linear-gradient-bg: linear-gradient(180deg, #740091, #2d1a4c);
+    --tab-active-bg: hsla(0, 0%, 100%, 0.3);
 
     //Fonts
     --font-family: 'Inter', sans-serif;
@@ -52,9 +54,6 @@ body {
     line-height: 1.4;
     text-rendering: optimizeSpeed;
     color: var(--text-color);
-    &::-webkit-scrollbar {
-        display: none;
-    }
 }
 
 // scrollbar css
@@ -65,7 +64,7 @@ html *::-webkit-scrollbar {
 
 html *::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: transparent;
+    background-color: var(--primary);
 }
 
 html *::-webkit-scrollbar-track {
@@ -83,6 +82,26 @@ input,
 a {
     color: var(--text-color);
     text-decoration: none;
+}
+
+.d-none {
+    display: none;
+}
+
+.rank-1 {
+    -webkit-text-stroke: 1.5px #4a90e2;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.rank-2 {
+    -webkit-text-stroke: 1.5px #50e3c2;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.rank-3 {
+    -webkit-text-stroke: 1.5px #e35050;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .swiper-pagination,

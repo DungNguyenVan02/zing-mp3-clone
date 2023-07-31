@@ -5,6 +5,7 @@ import Radio from '~/pages/Radio';
 import Top100 from '~/pages/Top100';
 import Album from '~/pages/Album';
 import WeekRank from '~/pages/WeekRank';
+import ZingChart from '~/pages/ZingChart';
 
 const config = {
     home: {
@@ -38,6 +39,10 @@ const config = {
     weekRank: {
         component: WeekRank,
         path: '/zing-chart-tuan/:title/:id',
+    },
+    zingChart: {
+        component: ZingChart,
+        path: '/zing-chart',
     },
 };
 export default config;

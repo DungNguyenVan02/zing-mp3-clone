@@ -14,16 +14,20 @@ const cx = classNames.bind(styles);
 
 function ControlMusicCenter({ audio, duration, errAudio }) {
     const dispatch = useDispatch();
-    const { currentSongId, isPlaying, isLoading, songs, volume } = useSelector((state) => state.music);
+    const { currentSongId, currentAlbumId, isPlaying, isPlayingRandom, isLoading, songs, volume } = useSelector(
+        (state) => state.music,
+    );
     const [currentTime, setCurrentTime] = useState('00:00');
     const [isRandom, setIsRandom] = useState(false);
     const [isRepeat, setIsRepeat] = useState(false);
+    const [songFilter, setSongFilter] = useState([]);
 
     const progressBar = useRef();
     const progressArea = useRef();
     const audioRef = useRef();
 
     useEffect(() => {
+        audioRef.current.pause();
         if (isPlaying && audioRef.current) {
             progressArea.current.width = 0;
             audioRef.current.load();
@@ -33,6 +37,24 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [audio, errAudio]);
+
+    useEffect(() => {
+        if (isPlayingRandom) {
+            handleRandomSong();
+            dispatch(actions.setPlaying(true));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentAlbumId || isPlayingRandom]);
+    useEffect(() => {
+        const arrFilter = [];
+        songs.forEach((song) => {
+            if (song.isWorldWide === true) {
+                arrFilter.push(song);
+            }
+        });
+        setSongFilter(arrFilter);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentAlbumId, songs.length > 0]);
 
     useEffect(() => {
         audioRef.current.volume = volume / 100;
@@ -61,11 +83,6 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
         };
         audioRef.current?.addEventListener('timeupdate', handlePercentSong);
         audioRef.current?.addEventListener('ended', handleEnded);
-
-        return () => {
-            audioRef.current?.removeEventListener('ended', handleEnded);
-            audioRef.current?.removeEventListener('timeupdate', handlePercentSong);
-        };
     });
 
     const handleTogglePlay = () => {
@@ -87,21 +104,21 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
     };
 
     const handleNextSong = () => {
-        if (songs) {
+        if (songFilter) {
             if (isRandom) {
                 handleRandomSong();
             } else {
                 let currentSong;
-                songs?.find((song, index) => {
+                songFilter?.find((song, index) => {
                     if (song?.encodeId === currentSongId) {
                         currentSong = index + 1;
                     }
                     return currentSong;
                 });
-                if (currentSong >= songs.length) {
+                if (currentSong >= songFilter.length) {
                     currentSong = 0;
                 }
-                dispatch(actions.setCurrentSongId(songs[currentSong]?.encodeId));
+                dispatch(actions.setCurrentSongId(songFilter[currentSong]?.encodeId));
                 dispatch(actions.setPlaying(true));
             }
         }
@@ -109,30 +126,24 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
 
     const handlePrevSong = () => {
         let currentSong;
-        songs?.find((song, index) => {
+        songFilter?.find((song, index) => {
             if (song?.encodeId === currentSongId) {
                 currentSong = index - 1;
             }
             return currentSong;
         });
         if (currentSong < 0) {
-            currentSong = songs.length - 1;
+            currentSong = songFilter.length - 1;
         }
-        dispatch(actions.setCurrentSongId(songs[currentSong]?.encodeId));
+        dispatch(actions.setCurrentSongId(songFilter[currentSong]?.encodeId));
     };
 
     const handleRandomSong = () => {
         let currentSong;
         let filterRandom;
         let newCurrentSong;
-        const arrRandom = [];
 
-        songs.forEach((item, index) => {
-            if (item?.isWorldWide === true) {
-                arrRandom.push(index);
-            }
-        });
-        songs?.find((song, index) => {
+        songFilter?.find((song, index) => {
             if (song?.encodeId === currentSongId) {
                 currentSong = index;
             }
@@ -140,13 +151,12 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
         });
 
         do {
-            filterRandom = Math.floor(Math.random() * arrRandom.length);
-        } while (filterRandom === arrRandom.includes(currentSong));
+            filterRandom = Math.floor(Math.random() * songFilter.length);
+        } while (filterRandom === songFilter.includes(currentSong));
 
-        newCurrentSong = arrRandom[filterRandom];
-        dispatch(actions.setCurrentSongId(songs[newCurrentSong]?.encodeId));
+        newCurrentSong = songFilter[filterRandom];
+        dispatch(actions.setCurrentSongId(newCurrentSong?.encodeId));
     };
-
     return (
         <div className={cx('control-center')}>
             <div className={cx('player-top')}>

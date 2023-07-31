@@ -30,10 +30,13 @@ function ControlMusic() {
             if (res1?.err === 0 && res2?.err === 0) {
                 setSongInfo(res1?.data);
                 setDuration(res1?.data?.duration);
+                dispatch(actions.setCurrentSongData(res1?.data));
+                dispatch(actions.setRecentSongs(res1?.data));
             }
             if (res2?.err === 0) {
                 setAudio(res2.data['128']);
                 setErrAudio(false);
+                dispatch(actions.setPlayingRandom(false));
             } else {
                 toast.warn(res2.msg);
                 setErrAudio(true);

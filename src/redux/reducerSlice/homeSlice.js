@@ -12,6 +12,8 @@ const initState = {
     editorTheme9: {},
     editorTheme10: {},
     editorTheme11: {},
+    chart: {},
+    rank: [],
     isOpenSidebar: false,
     isLoadingPage: false,
 };
@@ -32,6 +34,8 @@ function homeSlice(state = initState, action) {
                 editorTheme9: action.payload?.find((item) => item.sectionId === 'h100') || {},
                 editorTheme10: action.payload?.find((item) => item.sectionId === 'hAlbum') || {},
                 editorTheme11: action.payload?.find((item) => item.sectionId === 'hLiveRadio') || {},
+                chart: action.payload?.find((item) => item.sectionId === 'hZC').chart || {},
+                rank: action.payload?.find((item) => item.sectionId === 'hZC').items || [],
             };
         case actionTypes.SET_OPEN_SIDE_BAR_RIGHT:
             return {

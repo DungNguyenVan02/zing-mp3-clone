@@ -8,7 +8,6 @@ const cx = classNames.bind(styles);
 
 function ListSong({ total, totalDuration }) {
     const { songs } = useSelector((state) => state.music);
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('title')}>

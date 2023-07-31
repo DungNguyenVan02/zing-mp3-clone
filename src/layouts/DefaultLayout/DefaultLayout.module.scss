@@ -11,7 +11,7 @@
 
     &:hover {
         .container::-webkit-scrollbar-thumb {
-            background-color: hsla(274, 93%, 48%, 0.3);
+            background-color: var(--primary);
         }
     }
 
@@ -28,6 +28,9 @@
         background-color: var(--player-bg);
         height: calc(100vh - (var(--height-control) + var(--height-header)));
         overflow-y: auto;
+        &::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
     }
     .loading-page {
         display: flex;

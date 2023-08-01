@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './SidebarLeft.module.scss';
 import { BoxMusicIcon, CircleIcon, RadioIcon, NoteMusicIcon, StarIcon } from '~/components/icons';
 import images from '~/assets/images';
-import config from '~/config/routes';
+import routes from '~/config/routes';
 import SidebarLeftItem from './SidebarLeftItem';
 import { Link } from 'react-router-dom';
 
@@ -12,34 +12,34 @@ const MENU_ITEMS = [
     {
         icon: <BoxMusicIcon />,
         title: 'Cá nhân',
-        to: config.myMusic.path,
+        to: routes.myMusic,
     },
     {
         icon: <CircleIcon />,
         title: 'Khám phá',
-        to: config.home.path,
+        to: routes.home,
     },
     {
         icon: <NoteMusicIcon />,
         title: 'Nhạc mới',
-        to: config.newMusic.path,
+        to: routes.newMusic,
     },
     {
         icon: <RadioIcon />,
         title: 'Radio',
-        to: config.radio.path,
+        to: routes.radio,
     },
     {
         icon: <StarIcon />,
         title: 'Top 100',
-        to: config.top100.path,
+        to: routes.top100,
     },
 ];
 
 function SidebarLeft() {
     return (
         <div className={cx('wrapper')}>
-            <Link to={config.home.path}>
+            <Link to={routes.home}>
                 <div className={cx('logo')}>
                     <img src={images.logo} alt="logo" />
                 </div>

@@ -39,3 +39,16 @@ export const getDetailPlayList = async (id) => {
         console.log(error);
     }
 };
+
+export const search = async (keyword) => {
+    try {
+        const result = await request.get('/search', {
+            params: {
+                keyword,
+            },
+        });
+        return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

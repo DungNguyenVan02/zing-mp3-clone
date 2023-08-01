@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import moment from 'moment/moment';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,9 +15,8 @@ import { Playing } from '~/components/Animation';
 const cx = classNames.bind(styles);
 
 function Album() {
-    const { id } = useParams();
-    const location = useLocation();
     const dispatch = useDispatch();
+    const { id } = useParams();
 
     const { isPlaying, isLoading } = useSelector((state) => state.music);
     const [playList, setPlayList] = useState({});
@@ -29,8 +28,8 @@ function Album() {
             const response = await apis.getDetailPlayList(id);
             dispatch(actions.setLoadingPage(false));
             if (response.err === 0) {
-                dispatch(actions.setSongs(response?.data?.song?.items));
                 setPlayList(response?.data);
+                dispatch(actions.setSongs(response?.data?.song?.items));
             }
         };
         fetchApi();
@@ -85,11 +84,7 @@ function Album() {
                         <h4>Lời tựa</h4>
                         <h4>{playList?.sortDescription}</h4>
                     </div>
-                    <ListSong
-                        total={playList?.song?.total}
-                        totalDuration={playList?.song?.totalDuration}
-                        isPlayRandAlbum={location.state?.isPlayAlbum}
-                    />
+                    <ListSong total={playList?.song?.total} totalDuration={playList?.song?.totalDuration} />
                 </div>
             </div>
         </div>

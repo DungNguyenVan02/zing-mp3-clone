@@ -62,3 +62,10 @@ export const setRecentSongs = (data) => {
         payload: data,
     };
 };
+
+export const deleteRecentSongs = (index) => {
+    return {
+        type: actionTypes.DELETE_RECENT_SONGS,
+        payload: index,
+    };
+};

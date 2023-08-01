@@ -1,41 +1,64 @@
-import config from '~/config/routes';
+import routes from '~/config/routes';
+import Home from '~/pages/Home';
+import MyMusic from '~/pages/MyMusic';
+import NewMusic from '~/pages/NewMusic';
+import Radio from '~/pages/Radio';
+import Top100 from '~/pages/Top100';
+import Album from '~/pages/Album';
+import WeekRank from '~/pages/WeekRank';
+import ZingChart from '~/pages/ZingChart';
+import Search from '~/pages/Search';
+import SearchSongs from '~/pages/SearchSongs';
+import SearchAll from '~/pages/SearchAll';
 
 const publicRoutes = [
     {
-        path: config.home.path,
-        component: config.home.component,
+        path: routes.home,
+        component: Home,
     },
     {
-        path: config.myMusic.path,
-        component: config.myMusic.component,
+        path: routes.myMusic,
+        component: MyMusic,
     },
     {
-        path: config.newMusic.path,
-        component: config.newMusic.component,
+        path: routes.newMusic,
+        component: NewMusic,
     },
     {
-        path: config.radio.path,
-        component: config.radio.component,
+        path: routes.radio,
+        component: Radio,
     },
     {
-        path: config.top100.path,
-        component: config.top100.component,
+        path: routes.top100,
+        component: Top100,
     },
     {
-        path: config.album.path,
-        component: config.album.component,
+        path: routes.album,
+        component: Album,
     },
     {
-        path: config.playlist.path,
-        component: config.playlist.component,
+        path: routes.playlist,
+        component: Album,
     },
     {
-        path: config.weekRank.path,
-        component: config.weekRank.component,
+        path: routes.weekRank,
+        component: WeekRank,
     },
     {
-        path: config.zingChart.path,
-        component: config.zingChart.component,
+        path: routes.zingChart,
+        component: ZingChart,
+    },
+    {
+        path: routes.search,
+        component: Search,
+    },
+    {
+        path: routes.searchSongs,
+        component: SearchSongs,
+    },
+    {
+        path: routes.searchAll,
+        component: SearchAll,
     },
 ];
 const privateRoutes = [];

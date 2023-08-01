@@ -3,7 +3,8 @@ const initState = {
     currentSongId: null,
     currentSongData: null,
     currentAlbumId: null,
-    songs: [],
+    songs: [], //Danh sách có nhạc vip
+    songsBasics: [], //Danh sách nhạc không cần vip
     recentSongs: [],
     isPlaying: false,
     isPlayingRandom: false,
@@ -28,9 +29,16 @@ function musicSlice(state = initState, action) {
                 isPlaying: action.payload,
             };
         case actionTypes.SET_LIST_SONGS:
+            const filterSongBasic = [];
+            action.payload.forEach((song) => {
+                if (song.isWorldWide === true) {
+                    filterSongBasic.push(song);
+                }
+            });
             return {
                 ...state,
                 songs: action.payload,
+                songsBasics: filterSongBasic,
             };
         case actionTypes.SET_LOADING_SONG:
             return {
@@ -64,7 +72,14 @@ function musicSlice(state = initState, action) {
             return {
                 ...state,
                 recentSongs: songs,
-                // recentSongs: [action.payload, ...state.recentSongs],
+            };
+        case actionTypes.DELETE_RECENT_SONGS:
+            console.log(action.payload);
+            let newRecentSong = state.recentSongs;
+            newRecentSong.splice(action.payload, 1);
+            return {
+                ...state,
+                recentSongs: newRecentSong,
             };
         default:
             return state;

@@ -29,6 +29,7 @@ function Media({ songData, order, percent, className, small, bgNone, props }) {
         {
             title: 'Xóa khỏi Playlist',
             icon: <FontAwesomeIcon icon={faTrashCan} />,
+            handleClick: (index) => dispatch(actions.deleteRecentSongs(index)),
         },
         {
             title: 'Chia sẻ',
@@ -38,7 +39,11 @@ function Media({ songData, order, percent, className, small, bgNone, props }) {
     const handleShowOption = (attrs) => (
         <ul className={cx('option-more')} tabIndex="-1" {...attrs}>
             {OPTION_MORE.map((item, index) => (
-                <li key={index} className={cx('option-item')}>
+                <li
+                    key={index}
+                    className={cx('option-item')}
+                    onClick={item.handleClick ? () => item.handleClick(index) : () => {}}
+                >
                     <span className={cx('option-more-icon')}>{item.icon}</span>
                     <h3 className={cx('option-more-title')}>{item.title}</h3>
                 </li>

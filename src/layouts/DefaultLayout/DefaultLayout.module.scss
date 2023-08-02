@@ -24,7 +24,7 @@
     }
     .container {
         margin-top: 70px;
-        padding: 0 59px;
+        padding: var(--gutter-content);
         background-color: var(--player-bg);
         height: calc(100vh - (var(--height-control) + var(--height-header)));
         overflow-y: auto;

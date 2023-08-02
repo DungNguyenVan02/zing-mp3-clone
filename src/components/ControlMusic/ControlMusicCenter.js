@@ -71,6 +71,11 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
         };
         audioRef.current?.addEventListener('timeupdate', handlePercentSong);
         audioRef.current?.addEventListener('ended', handleEnded);
+
+        return () => {
+            audioRef.current?.removeEventListener('timeupdate', handlePercentSong);
+            audioRef.current?.removeEventListener('ended', handleEnded);
+        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     });
 

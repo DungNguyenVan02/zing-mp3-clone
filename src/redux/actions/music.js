@@ -1,4 +1,5 @@
 import actionTypes from './actionTypes';
+import * as apis from '~/services';
 
 export const setCurrentSongId = (id) => {
     return {
@@ -68,4 +69,26 @@ export const deleteRecentSongs = (index) => {
         type: actionTypes.DELETE_RECENT_SONGS,
         payload: index,
     };
+};
+
+export const search = (keyWord) => async (dispatch) => {
+    try {
+        const response = await apis.search(keyWord);
+        if (response.err === 0) {
+            dispatch({
+                type: actionTypes.SEARCH,
+                payload: response,
+            });
+        } else {
+            dispatch({
+                type: actionTypes.SEARCH,
+                payload: null,
+            });
+        }
+    } catch (error) {
+        dispatch({
+            type: actionTypes.SEARCH,
+            payload: null,
+        });
+    }
 };

@@ -54,3 +54,11 @@
 //         transform: translateY(-50%) rotate(360deg);
 //     }
 // }
+.search-result {
+    width: 500px;
+
+    .suggest-song {
+        width: 100%;
+        background-color: blue;
+    }
+}

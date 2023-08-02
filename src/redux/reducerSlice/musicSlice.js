@@ -6,6 +6,7 @@ const initState = {
     songs: [], //Danh sách có nhạc vip
     songsBasics: [], //Danh sách nhạc không cần vip
     recentSongs: [],
+    search: {},
     isPlaying: false,
     isPlayingRandom: false,
     isLoading: true,
@@ -80,6 +81,11 @@ function musicSlice(state = initState, action) {
             return {
                 ...state,
                 recentSongs: newRecentSong,
+            };
+        case actionTypes.SEARCH:
+            return {
+                ...state,
+                search: action.payload,
             };
         default:
             return state;

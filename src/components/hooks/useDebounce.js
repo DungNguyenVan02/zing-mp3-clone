@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-function useCurrentDebounce(value, delay) {
+function useDebounce(value, delay) {
     const [debounceValue, setDebounceValue] = useState(value);
     useEffect(() => {
         const idTime = setTimeout(() => {
@@ -12,4 +12,4 @@ function useCurrentDebounce(value, delay) {
     return debounceValue;
 }
 
-export default useCurrentDebounce;
+export default useDebounce;

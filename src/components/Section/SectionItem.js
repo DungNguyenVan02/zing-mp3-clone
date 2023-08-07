@@ -13,7 +13,6 @@ function SectionItem({ data }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const currentId = data?.link.split('.')[0].split('/')[3];
-
     const handleClick = () => {
         const path = data?.link.split('.')[0];
         navigate(path);

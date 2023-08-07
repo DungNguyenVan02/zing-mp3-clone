@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect, memo, useRef } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { Chart } from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
 import config from '~/config/routes';
@@ -192,4 +193,4 @@ const ZingChart = memo(({ data, chart, rank }) => {
     );
 });
 
-export default ZingChart;
+export default memo(ZingChart);

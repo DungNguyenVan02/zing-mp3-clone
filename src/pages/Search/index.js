@@ -1,12 +1,13 @@
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import routes from '~/config/routes';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Search() {
+    const navigate = useNavigate();
+    const location = useLocation();
     const MENU = [
         {
             title: 'Tất cả',
@@ -16,10 +17,14 @@ function Search() {
             title: 'Bài Hát',
             path: routes.searchSongs,
         },
+        {
+            title: 'PlayList/Album',
+            path: '',
+        },
     ];
-    const { search } = useSelector((state) => state.music);
-    console.log(search);
-    const navigate = useNavigate();
+    const handleClick = (item) => {
+        navigate(item.path);
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -27,7 +32,13 @@ function Search() {
                 <h2 className={cx('title')}>Kết Quả Tìm Kiếm</h2>
                 <ul className={cx('list-menu')}>
                     {MENU.map((item, index) => (
-                        <li key={index} className={cx('list-item')} onClick={() => navigate(item.path)}>
+                        <li
+                            key={index}
+                            className={cx('list-item', {
+                                active: item.path === location.pathname,
+                            })}
+                            onClick={() => handleClick(item)}
+                        >
                             {item.title}
                         </li>
                     ))}

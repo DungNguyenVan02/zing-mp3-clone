@@ -44,7 +44,7 @@ export const search = async (keyword) => {
     try {
         const result = await request.get('/search', {
             params: {
-                keyword,
+                keyword: keyword,
             },
         });
         return result.data;

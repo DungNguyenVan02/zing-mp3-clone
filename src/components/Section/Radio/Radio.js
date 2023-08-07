@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Radio.module.scss';
 import Title from '../component/Title';
 import RadioItem from './RadioItem';
+import { memo } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -22,4 +23,4 @@ function Radio({ data }) {
     );
 }
 
-export default Radio;
+export default memo(Radio);

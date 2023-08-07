@@ -4,9 +4,10 @@
 
     display: flex;
     align-items: center;
-    margin: 0 -59px;
+    margin: 0 -59px 28px;
     border-bottom: 1px solid var(--border-player);
     min-height: var(--height);
+
     .inner {
         display: flex;
         align-items: center;
@@ -39,12 +40,21 @@
         display: flex;
     }
     .list-item {
-        padding: 8px 0;
+        padding: 12px 0;
         margin: 0 20px;
         font-size: 1.4rem;
         text-transform: uppercase;
         font-weight: 500;
         color: #fff;
         cursor: pointer;
+        border-bottom: 2px solid transparent;
+
+        &:hover {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+    }
+    .active {
+        border-bottom: 2px solid var(--primary);
     }
 }

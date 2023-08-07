@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './SectionNewMusic.module.scss';
 import Title from '../component/Title';
 import Button from '~/components/Button';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import Media from '~/components/Media';
 
 const cx = classNames.bind(styles);
@@ -73,4 +73,4 @@ function SectionNewMusic({ data }) {
     );
 }
 
-export default SectionNewMusic;
+export default memo(SectionNewMusic);

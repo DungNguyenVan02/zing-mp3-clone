@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment, { duration } from 'moment';
 import 'moment/locale/vi';
 import { memo } from 'react';
 import classNames from 'classnames/bind';
@@ -13,7 +13,18 @@ import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
 
-function Media({ songData, order, percent, className, small, bgNone, props }) {
+function Media({
+    songData,
+    order,
+    percent,
+    className,
+    small,
+    bgNone,
+    width = '60px',
+    height = '60px',
+    showInfo,
+    props,
+}) {
     const dispatch = useDispatch();
     const { currentSongId, isPlaying, isLoading } = useSelector((state) => state.music);
 
@@ -59,12 +70,7 @@ function Media({ songData, order, percent, className, small, bgNone, props }) {
     return (
         <div className={classes} {...props}>
             {order && <h2 className={cx('rank', `rank-${order}`)}>{order}</h2>}
-            <figure
-                className={cx('img', {
-                    smallSz: small,
-                })}
-                onClick={handlePlaying}
-            >
+            <figure className={cx('img')} onClick={handlePlaying} style={{ width: width, height: height }}>
                 <img className={cx('img-link')} src={songData?.thumbnail} alt={songData?.title} />
                 <div
                     className={cx('play-icon', {
@@ -86,7 +92,11 @@ function Media({ songData, order, percent, className, small, bgNone, props }) {
                     {songData?.isWorldWide === false && <VipIcon />}
                 </div>
                 <p className={cx('singer')}>{songData?.artistsNames}</p>
-                {!small && <p className={cx('day')}>{moment(songData?.releaseDate * 1000).fromNow()}</p>}
+                {!small && !showInfo ? (
+                    <p className={cx('day')}>{moment(songData?.releaseDate * 1000).fromNow()}</p>
+                ) : (
+                    <></>
+                )}
             </div>
             {percent && <h2 className={cx('percent')}>{percent}</h2>}
             <div
@@ -95,6 +105,9 @@ function Media({ songData, order, percent, className, small, bgNone, props }) {
                 })}
             >
                 <div className={cx('option-list')}>
+                    {showInfo && (
+                        <span className={cx('duration')}>{moment.utc(songData?.duration * 1000).format('mm:ss')}</span>
+                    )}
                     <span className={cx('option-icon')} title="Thêm vào yêu thích">
                         <HeartIcon height="1.6rem" width="1.6rem" />
                     </span>

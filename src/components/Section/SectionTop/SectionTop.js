@@ -6,7 +6,7 @@ import 'swiper/css/autoplay';
 import { Pagination, Navigation, Autoplay, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { useRef } from 'react';
+import { memo, useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './SectionTop.module.scss';
 import Title from '../component/Title';
@@ -87,4 +87,4 @@ function SectionTop({ data }) {
     );
 }
 
-export default SectionTop;
+export default memo(SectionTop);

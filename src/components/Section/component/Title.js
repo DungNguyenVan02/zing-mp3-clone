@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
-function Title({ data }) {
+function Title({ data, title }) {
     return (
         <div className={cx('header')}>
-            <h3 className={cx('main-title')}>{data?.title}</h3>
+            <h3 className={cx('main-title')}>{title ? title : data?.title}</h3>
             <Button className={cx('all-btn')} textBtn rightIcon={<FontAwesomeIcon icon={faChevronRight} />}>
                 Tất cả
             </Button>

@@ -1,25 +1,26 @@
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import routes from '~/config/routes';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams, NavLink } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Search() {
     const navigate = useNavigate();
-    const location = useLocation();
+    const { keywords } = useParams();
+
     const MENU = [
         {
             title: 'Tất cả',
-            path: routes.searchAll,
+            path: `${routes.searchAll.split(':')[0] + keywords}`,
         },
         {
             title: 'Bài Hát',
-            path: routes.searchSongs,
+            path: `${routes.searchSongs.split(':')[0] + keywords}`,
         },
         {
             title: 'PlayList/Album',
-            path: '',
+            path: `${routes.searchPlaylist.split(':')[0] + keywords}`,
         },
     ];
     const handleClick = (item) => {
@@ -31,17 +32,19 @@ function Search() {
             <div className={cx('inner')}>
                 <h2 className={cx('title')}>Kết Quả Tìm Kiếm</h2>
                 <ul className={cx('list-menu')}>
-                    {MENU.map((item, index) => (
-                        <li
-                            key={index}
-                            className={cx('list-item', {
-                                active: item.path === location.pathname,
-                            })}
-                            onClick={() => handleClick(item)}
-                        >
-                            {item.title}
-                        </li>
-                    ))}
+                    {MENU.map((item, index) => {
+                        return (
+                            <NavLink
+                                key={index}
+                                to={item.path}
+                                className={({ isActive }) => (isActive ? cx('active') : '')}
+                            >
+                                <li className={cx('list-item')} onClick={() => handleClick(item)}>
+                                    {item.title}
+                                </li>
+                            </NavLink>
+                        );
+                    })}
                 </ul>
             </div>
         </div>

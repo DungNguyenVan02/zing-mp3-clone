@@ -52,3 +52,31 @@ export const search = async (keyword) => {
         console.log(error);
     }
 };
+
+export const getArtistSongs = async (singerId, page) => {
+    try {
+        const result = await request.get('/artistsong', {
+            params: {
+                id: singerId,
+                page: page,
+                count: 50,
+            },
+        });
+        return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getArtist = async (alias) => {
+    try {
+        const result = await request.get('/artist', {
+            params: {
+                name: alias,
+            },
+        });
+        return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

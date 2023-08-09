@@ -10,6 +10,8 @@ import ZingChart from '~/pages/ZingChart';
 import Search from '~/pages/Search';
 import SearchSongs from '~/pages/SearchSongs';
 import SearchAll from '~/pages/SearchAll';
+import SearchPlaylist from '~/pages/SearchPlaylist';
+import Singer from '~/pages/Singer';
 
 const publicRoutes = [
     {
@@ -59,6 +61,14 @@ const publicRoutes = [
     {
         path: routes.searchAll,
         component: SearchAll,
+    },
+    {
+        path: routes.searchPlaylist,
+        component: SearchPlaylist,
+    },
+    {
+        path: routes.singer,
+        component: Singer,
     },
 ];
 const privateRoutes = [];

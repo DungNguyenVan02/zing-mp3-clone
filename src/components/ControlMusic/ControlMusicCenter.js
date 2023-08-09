@@ -14,8 +14,9 @@ const cx = classNames.bind(styles);
 
 function ControlMusicCenter({ audio, duration, errAudio }) {
     const dispatch = useDispatch();
-    const { currentSongId, currentAlbumId, isPlaying, isPlayingRandom, isLoading, songs, songsBasics, volume } =
-        useSelector((state) => state.music);
+    const { currentSongId, isPlaying, isPlayingRandom, isLoading, songs, songsBasics, volume } = useSelector(
+        (state) => state.music,
+    );
     const [currentTime, setCurrentTime] = useState('00:00');
     const [isRandom, setIsRandom] = useState(false);
     const [isRepeat, setIsRepeat] = useState(false);
@@ -74,6 +75,7 @@ function ControlMusicCenter({ audio, duration, errAudio }) {
 
         return () => {
             audioRef.current?.removeEventListener('timeupdate', handlePercentSong);
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             audioRef.current?.removeEventListener('ended', handleEnded);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps

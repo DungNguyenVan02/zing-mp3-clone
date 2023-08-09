@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+
 import { useSelector } from 'react-redux';
 import Search from '../Search';
 import styles from './SearchAll.module.scss';
@@ -10,7 +11,7 @@ import { Section, Artists } from '~/components/Section';
 const cx = classNames.bind(styles);
 function SearchAll() {
     const { search } = useSelector((state) => state.music);
-    let follower = useFormat(search && search?.data?.artists[0]?.totalFollow);
+    let follower = useFormat(search?.data?.artists && search?.data?.artists[0]?.totalFollow);
 
     return (
         <div className={cx('wrapper')}>
@@ -49,18 +50,26 @@ function SearchAll() {
                             </div>
                         </div>
                     )}
-                    {search?.data?.songs
-                        ?.filter((x, index) => index < 2)
-                        .map((item) => (
-                            <div key={item.encodeId} className="col l-4">
-                                <div className={cx('section-top-item')}>
-                                    <Media songData={item} className={cx('songs-item')} width="84px" height="84px" />
+                    {search?.data?.songs &&
+                        search?.data?.songs
+                            ?.filter((x, index) => index < 2)
+                            ?.map((item) => (
+                                <div key={item.encodeId} className="col l-4">
+                                    <div className={cx('section-top-item')}>
+                                        <Media
+                                            songData={item}
+                                            className={cx('songs-item')}
+                                            width="84px"
+                                            height="84px"
+                                            showInfo
+                                            small
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
                 </div>
             </div>
-            <Section data={search?.data?.songs} title="Bài Hát" />
+            <Section data={search?.data?.songs} title="Bài Hát" quantity={6} />
             <Section data={search?.data?.playlists} title="Playlist/Album" isAlbum />
             <Artists data={search?.data?.artists} />
         </div>

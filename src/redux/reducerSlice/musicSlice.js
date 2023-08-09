@@ -31,7 +31,7 @@ function musicSlice(state = initState, action) {
             };
         case actionTypes.SET_LIST_SONGS:
             const filterSongBasic = [];
-            action.payload.forEach((song) => {
+            action.payload?.forEach((song) => {
                 if (song.isWorldWide === true) {
                     filterSongBasic.push(song);
                 }
@@ -75,7 +75,6 @@ function musicSlice(state = initState, action) {
                 recentSongs: songs,
             };
         case actionTypes.DELETE_RECENT_SONGS:
-            console.log(action.payload);
             let newRecentSong = state.recentSongs;
             newRecentSong.splice(action.payload, 1);
             return {

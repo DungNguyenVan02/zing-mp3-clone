@@ -64,7 +64,7 @@ function Media({
 
     const classes = cx('wrapper', {
         [className]: className,
-        activeSzBar: small && songData?.encodeId === currentSongId && !bgNone,
+        activeSzBar: small && songData?.encodeId === currentSongId && !bgNone && !showInfo,
         active: songData?.encodeId === currentSongId,
     });
     return (
@@ -105,8 +105,10 @@ function Media({
                 })}
             >
                 <div className={cx('option-list')}>
-                    {showInfo && (
+                    {showInfo && !small ? (
                         <span className={cx('duration')}>{moment.utc(songData?.duration * 1000).format('mm:ss')}</span>
+                    ) : (
+                        <></>
                     )}
                     <span className={cx('option-icon')} title="Thêm vào yêu thích">
                         <HeartIcon height="1.6rem" width="1.6rem" />

@@ -14,7 +14,7 @@ const persistConfig = {
 const persistMusicConfig = {
     ...persistConfig,
     key: 'music',
-    whitelist: ['currentSongId', 'currentAlbumId', 'volume', 'currentSongData', 'recentSongs'],
+    whitelist: ['currentSongId', 'currentAlbumId', 'volume', 'currentSongData', 'recentSongs', 'search'],
 };
 
 const rootReducer = combineReducers({

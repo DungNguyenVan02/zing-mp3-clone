@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Search from '../Search';
 import styles from './SearchAll.module.scss';
 import { useFormat } from '~/components/hooks';
@@ -11,8 +12,9 @@ import { Section, Artists } from '~/components/Section';
 const cx = classNames.bind(styles);
 function SearchAll() {
     const { search } = useSelector((state) => state.music);
-    let follower = useFormat(search?.data?.artists && search?.data?.artists[0]?.totalFollow);
-
+    const follower = useFormat(search?.data?.artists && search?.data?.artists[0]?.totalFollow);
+    const linkSinger = search?.data?.artists && search?.data?.artists[0]?.link;
+    console.log(search);
     return (
         <div className={cx('wrapper')}>
             <Search />
@@ -22,7 +24,8 @@ function SearchAll() {
                     {search?.data?.top && (
                         <div className="col l-4">
                             <div className={cx('section-top-item')}>
-                                <div
+                                <Link
+                                    to={linkSinger}
                                     className={cx('section-top-left', {
                                         circle: search?.data?.top?.objectType === 'artist' ? true : false,
                                     })}
@@ -35,7 +38,7 @@ function SearchAll() {
                                             <PlayIcon />
                                         )}
                                     </div>
-                                </div>
+                                </Link>
                                 <div className={cx('section-top-right')}>
                                     <h3 className={cx('section-top-title')}>
                                         {search?.data?.top?.objectType === 'artist' ? 'Nghệ sĩ' : 'Bài hát'}

@@ -70,6 +70,10 @@ const publicRoutes = [
         path: routes.singer,
         component: Singer,
     },
+    {
+        path: routes.artistSinger,
+        component: Singer,
+    },
 ];
 const privateRoutes = [];
 

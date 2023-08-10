@@ -94,14 +94,12 @@ export const search = (keyWord) => async (dispatch) => {
 };
 
 export const getSearchSongs = (singerId, page) => async (dispatch) => {
-    console.log(page);
     dispatch({
         type: actionTypes.SET_LOADING_PAGE,
         payload: true,
     });
     try {
         const response = await apis.getArtistSongs(singerId, page);
-        console.log(response);
         if (response.err === 0) {
             dispatch({
                 type: actionTypes.SET_LIST_SONGS,

@@ -13,5 +13,6 @@ const routes = {
     searchAll: '/tim-kiem/tat-ca/:keywords',
     searchPlaylist: '/tim-kiem/playlist/:keywords',
     singer: '/:singer',
+    artistSinger: '/nghe-si/:singer',
 };
 export default routes;

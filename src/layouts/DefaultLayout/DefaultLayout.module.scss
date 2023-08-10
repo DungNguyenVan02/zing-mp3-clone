@@ -21,7 +21,12 @@
         right: 0;
         left: 240px;
         z-index: 9999;
+        background-color: var(--layout-header-bg);
     }
+    .bgn {
+        background-color: transparent;
+    }
+
     .container {
         margin-top: 70px;
         padding: var(--gutter-content);
@@ -31,6 +36,10 @@
         &::-webkit-scrollbar-thumb {
             background-color: transparent;
         }
+    }
+    .mgn {
+        margin-top: 0;
+        height: calc(100vh - var(--height-control));
     }
     .loading-page {
         display: flex;

@@ -1,16 +1,18 @@
 import classNames from 'classnames/bind';
-import styles from './DefaultLayout.module.scss';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import styles from './DefaultLayout.module.scss';
 import PropTypes from 'prop-types';
 import SidebarLeft from '~/components/sidebars/SidebarLeft';
 import SidebarRight from '~/components/sidebars/SidebarRight';
 import Header from '~/components/Header';
 import ControlMusic from '~/components/ControlMusic/';
 import { Loading } from '~/components/Animation';
-import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
+    const { singer } = useParams();
     const { isLoadingPage } = useSelector((state) => state.home);
 
     return (
@@ -24,10 +26,20 @@ function DefaultLayout({ children }) {
                         <Loading />
                     </div>
                 )}
-                <div className={cx('header')}>
+                <div
+                    className={cx('header', {
+                        bgn: singer,
+                    })}
+                >
                     <Header />
                 </div>
-                <div className={cx('container')}>{children}</div>
+                <div
+                    className={cx('container', {
+                        mgn: singer,
+                    })}
+                >
+                    {children}
+                </div>
                 <SidebarRight />
             </div>
             <div className={cx('control')}>

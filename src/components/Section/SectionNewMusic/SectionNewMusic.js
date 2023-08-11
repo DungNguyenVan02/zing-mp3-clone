@@ -7,7 +7,7 @@ import Media from '~/components/Media';
 
 const cx = classNames.bind(styles);
 
-function SectionNewMusic({ data }) {
+function SectionNewMusic({ data, artistData }) {
     const [active, setActive] = useState(0);
     const [songs, setSongs] = useState([]);
 
@@ -25,48 +25,60 @@ function SectionNewMusic({ data }) {
         <div className={cx('wrapper')}>
             <Title data={data} />
             <div className={cx('content')}>
-                <div className={cx('button')}>
-                    <Button
-                        onClick={() => setActive(0)}
-                        outline
-                        small
-                        className={cx('btn', {
-                            active: active === 0,
-                        })}
-                    >
-                        TẤT CẢ
-                    </Button>
-                    <Button
-                        onClick={() => setActive(1)}
-                        outline
-                        small
-                        className={cx('btn', {
-                            active: active === 1,
-                        })}
-                    >
-                        VIỆT NAM
-                    </Button>
-                    <Button
-                        onClick={() => setActive(2)}
-                        outline
-                        small
-                        className={cx('btn', {
-                            active: active === 2,
-                        })}
-                    >
-                        QUỐC TẾ
-                    </Button>
-                </div>
+                {!artistData && (
+                    <div className={cx('button')}>
+                        <Button
+                            onClick={() => setActive(0)}
+                            outline
+                            small
+                            className={cx('btn', {
+                                active: active === 0,
+                            })}
+                        >
+                            TẤT CẢ
+                        </Button>
+                        <Button
+                            onClick={() => setActive(1)}
+                            outline
+                            small
+                            className={cx('btn', {
+                                active: active === 1,
+                            })}
+                        >
+                            VIỆT NAM
+                        </Button>
+                        <Button
+                            onClick={() => setActive(2)}
+                            outline
+                            small
+                            className={cx('btn', {
+                                active: active === 2,
+                            })}
+                        >
+                            QUỐC TẾ
+                        </Button>
+                    </div>
+                )}
                 <div className="grid row">
-                    {songs
-                        ?.filter((item, index) => index <= 11)
-                        .map((song) => {
-                            return (
-                                <div key={song.encodeId} className="col l-4 m-6 s-12">
-                                    <Media songData={song} />
-                                </div>
-                            );
-                        })}
+                    {artistData
+                        ? data?.items
+                              ?.filter((item, index) => index <= 5)
+                              .map((song) => {
+                                  return (
+                                      <div key={song.encodeId} className="col l-6 m-6 s-12">
+                                          <Media songData={song} showInfo width="40px" height="40px" />
+                                      </div>
+                                  );
+                              })
+                        : songs
+                              ?.filter((item, index) => index <= 11)
+                              .map((song) => {
+                                  return (
+                                      <div key={song.encodeId} className="col l-4 m-6 s-12">
+                                          <Media songData={song} />
+                                      </div>
+                                  );
+                              })}
                 </div>
             </div>
         </div>

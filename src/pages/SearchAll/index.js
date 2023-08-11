@@ -14,7 +14,6 @@ function SearchAll() {
     const { search } = useSelector((state) => state.music);
     const follower = useFormat(search?.data?.artists && search?.data?.artists[0]?.totalFollow);
     const linkSinger = search?.data?.artists && search?.data?.artists[0]?.link;
-    console.log(search);
     return (
         <div className={cx('wrapper')}>
             <Search />

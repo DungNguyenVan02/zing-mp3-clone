@@ -22,6 +22,7 @@
         left: 240px;
         z-index: 9999;
         background-color: var(--layout-header-bg);
+        transition: all 0.4s ease-in-out;
     }
     .bgn {
         background-color: transparent;

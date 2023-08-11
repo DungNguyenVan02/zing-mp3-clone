@@ -9,11 +9,21 @@ import SidebarRight from '~/components/sidebars/SidebarRight';
 import Header from '~/components/Header';
 import ControlMusic from '~/components/ControlMusic/';
 import { Loading } from '~/components/Animation';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
     const { singer } = useParams();
+    const [backgroundColor, setBackgroundColor] = useState(false);
     const { isLoadingPage } = useSelector((state) => state.home);
+
+    const handleScroll = (e) => {
+        if (e.target.scrollTop >= 100) {
+            setBackgroundColor(true);
+        } else {
+            setBackgroundColor(false);
+        }
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -28,7 +38,7 @@ function DefaultLayout({ children }) {
                 )}
                 <div
                     className={cx('header', {
-                        bgn: singer,
+                        bgn: singer && !backgroundColor,
                     })}
                 >
                     <Header />
@@ -37,6 +47,7 @@ function DefaultLayout({ children }) {
                     className={cx('container', {
                         mgn: singer,
                     })}
+                    onScroll={handleScroll}
                 >
                     {children}
                 </div>

@@ -55,6 +55,45 @@
     align-items: center;
     flex: 4;
 
+    .number {
+        max-width: 56px;
+        width: 100%;
+        text-align: center;
+        font-size: 3.2rem;
+        -webkit-text-stroke: 1.5px #ccc;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+    }
+    .up-rank {
+        position: relative;
+        &::after {
+            position: absolute;
+            content: '';
+            border: 6px solid;
+            border-color: transparent transparent #1dc186 transparent;
+            top: -12px;
+            right: 50%;
+            transform: translateX(50%);
+        }
+    }
+    .down-rank {
+        position: relative;
+        &::after {
+            position: absolute;
+            content: '';
+            border: 6px solid;
+            border-color: #e35050 transparent transparent transparent;
+            top: -12px;
+            right: 50%;
+            transform: translateX(50%);
+        }
+    }
+    .sub-number {
+        padding: 8px 8px 0 8px;
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+    }
+
     .title-song {
         display: -webkit-box;
         -webkit-line-clamp: 1;
@@ -120,4 +159,8 @@
     font-size: 1.2rem;
     color: var(--text-secondary);
     font-weight: 500;
+}
+
+.order {
+    flex: none;
 }

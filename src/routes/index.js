@@ -5,7 +5,7 @@ import NewMusic from '~/pages/NewMusic';
 import Radio from '~/pages/Radio';
 import Top100 from '~/pages/Top100';
 import Album from '~/pages/Album';
-import WeekRank from '~/pages/WeekRank';
+import WeekChart from '~/pages/WeekChart';
 import ZingChart from '~/pages/ZingChart';
 import Search from '~/pages/Search';
 import SearchSongs from '~/pages/SearchSongs';
@@ -43,8 +43,8 @@ const publicRoutes = [
         component: Album,
     },
     {
-        path: routes.weekRank,
-        component: WeekRank,
+        path: routes.weekChart,
+        component: WeekChart,
     },
     {
         path: routes.zingChart,

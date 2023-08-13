@@ -1,0 +1,100 @@
+.content-top {
+    margin-bottom: 28px;
+    .chart-poster {
+        margin-top: 60px;
+        opacity: 0.96;
+        height: 100%;
+    }
+    .header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+    }
+    .header-title {
+        font-size: 4rem;
+        font-weight: 700;
+        letter-spacing: normal;
+        color: var(--white);
+        background: radial-gradient(50% 124.93% at 95.86% -10%, #3efad9 0, hsla(0, 0%, 100%, 0) 100%),
+            linear-gradient(91.56deg, #ff9357 1.54%, #9100ff 98.71%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .header-icon {
+        width: 36px;
+        height: 36px;
+        margin-left: 8px;
+        background-color: #fff;
+        color: black;
+    }
+    .chart {
+        height: 300px;
+    }
+    .rank-item-chart {
+        background-color: #675959;
+    }
+}
+
+.rank {
+    .rank-title {
+        display: flex;
+        margin-bottom: 24px;
+        h3 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: normal;
+            color: var(--white);
+            background: radial-gradient(50% 124.93% at 95.86% -10%, #3efad9 0, hsla(0, 0%, 100%, 0) 100%),
+                linear-gradient(91.56deg, #ff9357 1.54%, #9100ff 98.71%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
+}
+
+.rank-item {
+    margin-bottom: 34px;
+    border-radius: 16px;
+    background-color: hsla(0, 0%, 100%, 0.05);
+    .rank-item-title {
+        display: flex;
+        align-items: center;
+        padding: 14px 18px;
+
+        h3 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--primary);
+            }
+        }
+    }
+    .rank-item-btn {
+        width: 30px;
+        height: 30px;
+        margin-left: 8px;
+        background-color: var(--primary);
+    }
+}
+
+.rank-item-container {
+    .btn {
+        display: flex;
+        justify-content: center;
+    }
+    .btn-show {
+        font-size: 1.4rem;
+        font-weight: 500;
+        margin: 24px;
+        padding: 8px 24px;
+        border-color: #fff;
+        &:hover {
+            background-color: hsla(0, 0%, 100%, 0.1);
+        }
+    }
+}

@@ -1,0 +1,13 @@
+.btn-show {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 24px;
+    padding: 8px 24px;
+    border-color: #fff;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    &:hover {
+        background-color: hsla(0, 0%, 100%, 0.1);
+    }
+}

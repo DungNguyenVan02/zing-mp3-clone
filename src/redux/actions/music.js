@@ -64,6 +64,13 @@ export const setRecentSongs = (data) => {
     };
 };
 
+export const setWeekChart = (data) => {
+    return {
+        type: actionTypes.SET_WEEK_CHART,
+        payload: data,
+    };
+};
+
 export const deleteRecentSongs = (index) => {
     return {
         type: actionTypes.DELETE_RECENT_SONGS,

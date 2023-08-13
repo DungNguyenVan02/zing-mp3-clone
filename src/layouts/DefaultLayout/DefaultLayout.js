@@ -18,7 +18,7 @@ function DefaultLayout({ children }) {
     const { isLoadingPage } = useSelector((state) => state.home);
 
     const handleScroll = (e) => {
-        if (e.target.scrollTop >= 100) {
+        if (singer && e.target.scrollTop >= 100) {
             setBackgroundColor(true);
         } else {
             setBackgroundColor(false);

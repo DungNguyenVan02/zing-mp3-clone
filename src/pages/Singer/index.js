@@ -32,7 +32,7 @@ function Singer() {
         };
         singer && fetchApi();
 
-        refEl.current.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+        refEl.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [singer]);
 

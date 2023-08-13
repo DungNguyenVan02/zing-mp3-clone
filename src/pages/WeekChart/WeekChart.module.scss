@@ -1,0 +1,43 @@
+.header {
+    margin: 40px 0 24px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+
+    h3 {
+        font-size: 4rem;
+        font-weight: 600;
+        margin-right: 8px;
+        color: #fff;
+    }
+
+    .btn {
+        background-color: var(--primary);
+    }
+}
+
+.menu {
+    margin: 14px 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.item {
+    padding: 15px 0;
+    margin-right: 34px;
+    font-weight: 600;
+    font-size: 2.4rem;
+    color: hsla(0, 0%, 100%, 0.8);
+    cursor: pointer;
+
+    &:hover {
+        color: #fff;
+    }
+}
+.active {
+    color: #fff;
+    border-bottom: 3px solid var(--primary);
+}

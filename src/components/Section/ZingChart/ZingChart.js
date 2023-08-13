@@ -85,7 +85,6 @@ const ZingChart = memo(({ data, chart, rank }) => {
                     const rs = counters.find((item) =>
                         item.data.some((item) => item === +tooltip.body[0]?.lines[0]?.replace(',', '')),
                     );
-                    console.log(rs.encodeId);
                     setSelected(rs.encodeId);
                     const newTooltipData = {
                         opacity: 1,
@@ -127,7 +126,7 @@ const ZingChart = memo(({ data, chart, rank }) => {
                 style={{ background: `url(${images.bgChart}) top center / cover no-repeat` }}
             >
                 <div className={cx('chart-poster')}>
-                    <Link to={config.zingChart.path} className={cx('header')}>
+                    <Link to={data?.item && data?.items[0]?.link.split('.')[0]} className={cx('header')}>
                         <h3 className={cx('header-title')}>#zingchart</h3>
                         <Button circle className={cx('header-icon')}>
                             <PlayIcon height="1.8rem" width="1.8rem" />
@@ -147,7 +146,10 @@ const ZingChart = memo(({ data, chart, rank }) => {
                                             percent={`${Math.round((song?.score / chart?.totalScore) * 100)}%`}
                                         />
                                     ))}
-                                <Link to={config.zingChart.path} style={{ textAlign: 'center' }}>
+                                <Link
+                                    to={data?.item && data?.items[0]?.link.split('.')[0]}
+                                    style={{ textAlign: 'center' }}
+                                >
                                     <Button large outline className={cx('rank-more')}>
                                         Xem thêm
                                     </Button>

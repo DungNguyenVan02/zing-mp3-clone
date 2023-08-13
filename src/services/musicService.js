@@ -80,3 +80,12 @@ export const getArtist = async (alias) => {
         console.log(error);
     }
 };
+
+export const getChart = async () => {
+    try {
+        const result = await request.get('/charthome', {});
+        return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

@@ -9,7 +9,7 @@ import { Playing, Spinner as SpinnerLoading } from '../Animation';
 
 const cx = classNames.bind(styles);
 
-function ListItem({ songData }) {
+function ListItem({ songData, order, small }) {
     const dispatch = useDispatch();
     const { currentSongId, isPlaying, isLoading } = useSelector((state) => state.music);
     const handleClickSong = (id) => {
@@ -24,7 +24,23 @@ function ListItem({ songData }) {
             onClick={() => handleClickSong(songData?.encodeId)}
         >
             <div className={cx('info')}>
-                <NoteMusicIcon />
+                {order ? (
+                    <>
+                        <h3 className={cx('number', `rank-${order}`)}>{order}</h3>
+                        <div className={cx('sub-number')}>
+                            {songData?.rakingStatus > 0 ? (
+                                <div className={cx('up-rank')}>{songData?.rakingStatus}</div>
+                            ) : songData?.rakingStatus === 0 ? (
+                                <span>-</span>
+                            ) : (
+                                <div className={cx('down-rank')}>{songData?.rakingStatus * -1}</div>
+                            )}
+                        </div>
+                    </>
+                ) : (
+                    <NoteMusicIcon />
+                )}
+
                 <div className={cx('img')}>
                     <img className={cx('img-link')} src={songData?.thumbnail} alt="thumbnail" />
                     <div
@@ -49,8 +65,14 @@ function ListItem({ songData }) {
                     <span className={cx('singer')}>{songData?.artistsNames}</span>
                 </div>
             </div>
-            <div className={cx('album')}>{songData?.album?.title}</div>
-            <div className={cx('duration')}>{moment.utc(songData?.duration * 1000).format('mm:ss')}</div>
+            {!small && <div className={cx('album')}>{songData?.album?.title}</div>}
+            <div
+                className={cx('duration', {
+                    order: small,
+                })}
+            >
+                {moment.utc(songData?.duration * 1000).format('mm:ss')}
+            </div>
         </div>
     );
 }

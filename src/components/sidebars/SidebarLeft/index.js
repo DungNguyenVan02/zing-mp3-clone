@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './SidebarLeft.module.scss';
-import { BoxMusicIcon, CircleIcon, RadioIcon, NoteMusicIcon, StarIcon } from '~/components/icons';
+import { BoxMusicIcon, CircleIcon, RadioIcon, NoteMusicIcon, StarIcon, ChartIcon } from '~/components/icons';
 import images from '~/assets/images';
 import routes from '~/config/routes';
 import SidebarLeftItem from './SidebarLeftItem';
@@ -18,6 +18,11 @@ const MENU_ITEMS = [
         icon: <CircleIcon />,
         title: 'Khám phá',
         to: routes.home,
+    },
+    {
+        icon: <ChartIcon />,
+        title: '#zingchart',
+        to: routes.zingChart,
     },
     {
         icon: <NoteMusicIcon />,

@@ -6,6 +6,7 @@ const initState = {
     songs: [], //Danh sách có nhạc vip
     songsBasics: [], //Danh sách nhạc không cần vip
     recentSongs: [],
+    weekChart: [],
     search: {},
     isPlaying: false,
     isPlayingRandom: false,
@@ -85,6 +86,11 @@ function musicSlice(state = initState, action) {
             return {
                 ...state,
                 search: action.payload,
+            };
+        case actionTypes.SET_WEEK_CHART:
+            return {
+                ...state,
+                weekChart: action.payload,
             };
         default:
             return state;

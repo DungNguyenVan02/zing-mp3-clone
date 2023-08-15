@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './ControlMusic.module.scss';
-import { ListIcon, MVIcon, VolumeIcon, MuteIcon, WinDowIcon } from '../icons';
+import { ListIcon, VolumeIcon, MuteIcon } from '../icons';
 import { useDispatch } from 'react-redux';
 import { setOpenSidebar, setVolumeSong } from '~/redux/actions';
 
@@ -25,12 +25,6 @@ function ControlMusicRight() {
 
     return (
         <div className={cx('control-right')}>
-            <span className={cx('icon')}>
-                <MVIcon />
-            </span>
-            <span className={cx('icon')}>
-                <WinDowIcon />
-            </span>
             <span className={cx('icon')}>
                 {volume > 0 ? (
                     <span onClick={() => setVolume(0)}>

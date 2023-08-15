@@ -14,6 +14,7 @@ function Title({ data, title, quantity, link }) {
             {quantity > 7 ? (
                 <></>
             ) : (
+                !link?.includes('Chill') &&
                 link && (
                     <Link to={link}>
                         <Button className={cx('all-btn')} textBtn rightIcon={<FontAwesomeIcon icon={faChevronRight} />}>

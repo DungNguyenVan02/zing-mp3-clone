@@ -4,7 +4,6 @@ import { useState, useEffect, memo, useRef } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { Chart } from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-import config from '~/config/routes';
 
 import styles from './ZingChart.module.scss';
 import Button from '~/components/Button/Button';
@@ -127,14 +126,14 @@ const ZingChart = memo(({ data, chart, rank }) => {
                 style={{ background: `url(${images.bgChart}) top center / cover no-repeat` }}
             >
                 <div className={cx('chart-poster')}>
-                    <Link to={data?.items && data?.items[0]?.link.split('.')[0]} className={cx('header')}>
+                    <Link to={data?.items && data?.items[0]?.link?.split('.')[0]} className={cx('header')}>
                         <h3 className={cx('header-title')}>#zingchart</h3>
                         <Button circle className={cx('header-icon')}>
                             <PlayIcon height="1.8rem" width="1.8rem" />
                         </Button>
                     </Link>
                     <div className={cx('body', 'grid row')}>
-                        <div className={cx('content-left', 'col l-4')}>
+                        <div className={cx('content-left', 'col l-4 m-12')}>
                             <div className={cx('rank')}>
                                 {rank
                                     ?.filter((item, index) => index <= 2)
@@ -148,7 +147,7 @@ const ZingChart = memo(({ data, chart, rank }) => {
                                         />
                                     ))}
                                 <Link
-                                    to={data?.items && data?.items[0]?.link.split('.')[0]}
+                                    to={data?.items && data?.items[0]?.link?.split('.')[0]}
                                     style={{ textAlign: 'center' }}
                                 >
                                     <Button large outline className={cx('rank-more')}>
@@ -157,9 +156,11 @@ const ZingChart = memo(({ data, chart, rank }) => {
                                 </Link>
                             </div>
                         </div>
-                        <div className={cx('content-right', 'col l-8')}>
+                        <div className={cx('content-right', 'col l-8 m-12')}>
                             <div className={cx('chart')} style={{ position: 'relative' }}>
-                                {dataChart && <Line ref={chartRef} options={options} data={dataChart} />}
+                                {dataChart && (
+                                    <Line className={cx('line')} ref={chartRef} options={options} data={dataChart} />
+                                )}
                                 <div
                                     className="tooltip"
                                     style={{

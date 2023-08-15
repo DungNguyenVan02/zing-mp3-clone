@@ -29,7 +29,7 @@ function WeekChart() {
                 <div className={cx('menu')}>
                     {weekChart?.map((item) => (
                         <NavLink
-                            to={item?.link.split('.')[0]}
+                            to={item?.link?.split('.')[0]}
                             key={item?.chartId}
                             className={(nav) =>
                                 cx('item', {

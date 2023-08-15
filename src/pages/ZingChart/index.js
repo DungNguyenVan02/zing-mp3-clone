@@ -176,11 +176,11 @@ function ZingChart() {
                 <div className={cx('rank-title')}>
                     <h3>Bảng xếp hạng tuần</h3>
                 </div>
-                <div className="grid row">
+                <div className={cx('container', 'grid row')}>
                     {chartData?.data?.weekChart &&
                         Object.entries(chartData?.data?.weekChart).map((item) => {
                             return (
-                                <div key={item[0]} className="col l-4">
+                                <div key={item[0]} className="col l-4 m-12">
                                     <div className={cx('rank-item')}>
                                         <div className={cx('rank-item-title')}>
                                             <h3>
@@ -202,7 +202,7 @@ function ZingChart() {
                                                     />
                                                 ))}
                                             <div className={cx('btn')}>
-                                                <Link to={item[1].link.split('.')[0]}>
+                                                <Link to={item[1]?.link?.split('.')[0]}>
                                                     <Button className={cx('btn-show')} outline>
                                                         Xem thêm
                                                     </Button>

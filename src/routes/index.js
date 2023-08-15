@@ -11,7 +11,6 @@ import SearchSongs from '~/pages/SearchSongs';
 import SearchAll from '~/pages/SearchAll';
 import SearchPlaylist from '~/pages/SearchPlaylist';
 import Singer from '~/pages/Singer';
-import Chill from '~/pages/Chill';
 
 const publicRoutes = [
     {
@@ -69,10 +68,6 @@ const publicRoutes = [
     {
         path: routes.artistSinger,
         component: Singer,
-    },
-    {
-        path: routes.chill,
-        component: Chill,
     },
 ];
 const privateRoutes = [];

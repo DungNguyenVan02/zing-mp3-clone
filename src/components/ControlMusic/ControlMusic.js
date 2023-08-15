@@ -50,13 +50,13 @@ function ControlMusic() {
     return (
         <div className={cx('wrapper')}>
             <div className="grid row">
-                <div className="col l-3 m-3">
+                <div className="col l-3 m-2">
                     <ControlMusicLeft data={songInfo} />
                 </div>
-                <div className="col l-6 m-6">
+                <div className="col l-6 m-8">
                     <ControlMusicCenter audio={audio} duration={duration} errAudio={errAudio} />
                 </div>
-                <div className="col l-3 m-3">
+                <div className="col l-3 m-2">
                     <ControlMusicRight />
                 </div>
             </div>

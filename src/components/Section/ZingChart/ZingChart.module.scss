@@ -90,3 +90,18 @@
         transition: all 0.3s linear;
     }
 }
+
+@media (min-width: 740px) and (max-width: 1113px) {
+    .content-top {
+        height: 700px;
+    }
+    .body {
+        display: flex;
+    }
+    .content-left {
+        order: 2;
+    }
+    .content-right {
+        order: 1;
+    }
+}

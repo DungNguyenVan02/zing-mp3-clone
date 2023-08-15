@@ -2,16 +2,16 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './SidebarLeft.module.scss';
-import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
 function SidebarLeftItem({ title, icon, to }) {
     return (
         <NavLink className={(nav) => cx('menu-item', { active: nav.isActive })} to={to}>
-            <Button className={cx('menu-btn')} leftIcon={icon} textBtn>
-                {title}
-            </Button>
+            <div className={cx('menu-item-wrap')}>
+                <span>{icon}</span>
+                <h3>{title}</h3>
+            </div>
         </NavLink>
     );
 }

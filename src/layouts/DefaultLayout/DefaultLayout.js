@@ -27,6 +27,7 @@ function DefaultLayout({ children }) {
 
     return (
         <div className={cx('wrapper')}>
+            <div className={cx('notification')}>Sản phẩm hiện chưa có phiên bản mobile</div>
             <div className={cx('sidebar')}>
                 <SidebarLeft />
             </div>

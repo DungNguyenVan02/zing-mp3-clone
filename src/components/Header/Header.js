@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import Search from '../Search';
-import Button from '../Button/Button';
+import Button from '../Button';
 import { SettingIcon } from '../icons';
 import images from '~/assets/images';
 

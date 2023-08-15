@@ -12,9 +12,9 @@ function SectionItem({ data }) {
     const { isPlaying, currentAlbumId } = useSelector((state) => state.music);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const currentId = data?.link.split('.')[0].split('/')[3];
+    const currentId = data?.link?.split('.')[0]?.split('/')[3];
     const handleClick = () => {
-        const path = data?.link.split('.')[0];
+        const path = data?.link?.split('.')[0];
         navigate(path);
     };
     return (

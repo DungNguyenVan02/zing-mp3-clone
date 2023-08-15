@@ -43,6 +43,9 @@ function SidebarLeft() {
                 <div className={cx('logo')}>
                     <img src={images.logo} alt="logo" />
                 </div>
+                <div className={cx('logo-sub')}>
+                    <img src={images.logoMini} alt="logo" />
+                </div>
             </Link>
             <div className={cx('menu-list')}>
                 {MENU_ITEMS.map((item, index) => {

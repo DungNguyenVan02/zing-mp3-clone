@@ -14,7 +14,7 @@ function Radio({ data }) {
                 {data?.items
                     ?.filter((item, index) => index <= 6)
                     .map((radio) => (
-                        <div key={radio?.encodeId} className="col l-1-4">
+                        <div key={radio?.encodeId} className="col l-1-4 m-6 c-12">
                             <RadioItem radioData={radio} />
                         </div>
                     ))}

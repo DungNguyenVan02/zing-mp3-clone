@@ -31,7 +31,7 @@ function Slider() {
             dispatch(actions.setPlaying(true));
             dispatch(actions.setSongs(false));
         } else if (item?.type === 4) {
-            const pathAlbum = item.link.split('.')[0];
+            const pathAlbum = item?.link.split('.')[0];
             navigate(pathAlbum);
         } else {
             dispatch(actions.setSongs(false));

@@ -6,7 +6,6 @@ const routes = {
     album: '/album/:title/:id',
     playlist: '/playlist/:title/:id',
     weekChart: '/zing-chart-tuan/:title/:id',
-    chill: '/hub/:title/:id',
     zingChart: '/zing-chart',
     search: '/tim-kiem',
     searchSongs: '/tim-kiem/bai-hat/:keywords',

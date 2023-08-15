@@ -98,3 +98,9 @@
         }
     }
 }
+
+@media (min-width: 740px) and (max-width: 1113px) {
+    .container {
+        margin: 0 !important;
+    }
+}

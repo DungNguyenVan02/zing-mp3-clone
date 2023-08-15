@@ -67,7 +67,7 @@ function SidebarRight() {
             <div className={cx('body')}>
                 {!isRecent ? (
                     <>
-                        <Media songData={currentSongData} small width="40px" height="40px" />
+                        <Media songData={currentSongData} small width="40px" height="40px" playList />
                         <div className={cx('wrap-title')}>
                             <h3 className={cx('title')}>Tiếp theo</h3>
                             <span className={cx('sub-title')}>
@@ -89,7 +89,7 @@ function SidebarRight() {
                             <div className={cx('song-list-recent')}>
                                 {recentSongs?.map((song) => (
                                     <div key={song.encodeId} className={cx('song-item')}>
-                                        <Media songData={song} small bgNone width="40px" height="40px" />
+                                        <Media songData={song} small bgNone width="40px" height="40px" playList />
                                     </div>
                                 ))}
                             </div>

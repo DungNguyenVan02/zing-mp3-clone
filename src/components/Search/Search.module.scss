@@ -71,3 +71,9 @@
         overflow-y: auto;
     }
 }
+
+@media (min-width: 740px) and (max-width: 1113px) {
+    .search-result {
+        width: 260px;
+    }
+}

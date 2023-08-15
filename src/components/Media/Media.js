@@ -1,4 +1,4 @@
-import moment, { duration } from 'moment';
+import moment from 'moment';
 import 'moment/locale/vi';
 import { memo } from 'react';
 import classNames from 'classnames/bind';
@@ -23,6 +23,7 @@ function Media({
     width = '60px',
     height = '60px',
     showInfo,
+    playList,
     props,
 }) {
     const dispatch = useDispatch();
@@ -32,33 +33,39 @@ function Media({
         dispatch(actions.setPlaying(true));
         dispatch(actions.setCurrentSongId(songData?.encodeId));
     };
-    const OPTION_MORE = [
+    const OPTION_MORE_1 = [
         {
             title: 'Sao chép link',
             icon: <CopyIcon />,
         },
-        {
-            title: 'Xóa khỏi Playlist',
-            icon: <FontAwesomeIcon icon={faTrashCan} />,
-            handleClick: (index) => dispatch(actions.deleteRecentSongs(index)),
-        },
+
         {
             title: 'Chia sẻ',
             icon: <ShareIcon />,
         },
     ];
+    const OPTION_MORE_2 = [
+        ...OPTION_MORE_1,
+        {
+            title: 'Xóa khỏi Playlist',
+            icon: <FontAwesomeIcon icon={faTrashCan} />,
+            handleClick: (index) => dispatch(actions.deleteRecentSongs(index)),
+        },
+    ];
     const handleShowOption = (attrs) => (
         <ul className={cx('option-more')} tabIndex="-1" {...attrs}>
-            {OPTION_MORE.map((item, index) => (
-                <li
-                    key={index}
-                    className={cx('option-item')}
-                    onClick={item.handleClick ? () => item.handleClick(index) : () => {}}
-                >
-                    <span className={cx('option-more-icon')}>{item.icon}</span>
-                    <h3 className={cx('option-more-title')}>{item.title}</h3>
-                </li>
-            ))}
+            {(playList ? OPTION_MORE_2 : OPTION_MORE_1)?.map((item, index) => {
+                return (
+                    <li
+                        key={index}
+                        className={cx('option-item')}
+                        onClick={item.handleClick ? () => item.handleClick(index) : () => {}}
+                    >
+                        <span className={cx('option-more-icon')}>{item.icon}</span>
+                        <h3 className={cx('option-more-title')}>{item.title}</h3>
+                    </li>
+                );
+            })}
         </ul>
     );
 

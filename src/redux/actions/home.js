@@ -2,6 +2,10 @@ import actionTypes from './actionTypes';
 import * as apis from '~/services';
 
 export const getHome = () => async (dispatch) => {
+    dispatch({
+        type: actionTypes.SET_LOADING_PAGE,
+        payload: true,
+    });
     try {
         const responsive = await apis.homeService();
         if (responsive?.err === 0) {
@@ -21,6 +25,10 @@ export const getHome = () => async (dispatch) => {
             payload: null,
         });
     }
+    dispatch({
+        type: actionTypes.SET_LOADING_PAGE,
+        payload: false,
+    });
 };
 
 export const setOpenSidebar = (isOpen) => {

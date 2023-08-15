@@ -25,7 +25,7 @@ function Singer() {
         dispatch(actions.setLoadingPage(true));
         const fetchApi = async () => {
             const response = await apis.getArtist(singer);
-            if (response.err === 0) {
+            if (response?.err === 0) {
                 setArtist(response);
                 dispatch(actions.setLoadingPage(false));
             }

@@ -89,3 +89,21 @@ export const getChart = async () => {
         console.log(error);
     }
 };
+
+export const getNewRelease = async () => {
+    try {
+        const result = await request.get('/newReleaseChart', {});
+        return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const getTop100 = async () => {
+    try {
+        const result = await request.get('/top100', {});
+        return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+};

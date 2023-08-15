@@ -14,7 +14,7 @@ function SearchPlaylist() {
         dispatch(actions.setLoadingPage(true));
         const fetchApi = async () => {
             const response = await apis.getArtist(search?.data?.top?.alias);
-            if (response.err === 0) {
+            if (response?.err === 0) {
                 setPlayList(response?.data?.sections[1]);
                 dispatch(actions.setLoadingPage(false));
             }

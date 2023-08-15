@@ -4,6 +4,7 @@ import Title from '../component/Title';
 import Button from '~/components/Button';
 import { memo, useEffect, useState } from 'react';
 import Media from '~/components/Media';
+import routes from '~/config/routes';
 
 const cx = classNames.bind(styles);
 
@@ -23,7 +24,7 @@ function SectionNewMusic({ data, artistData }) {
     });
     return (
         <div className={cx('wrapper')}>
-            <Title data={data} />
+            <Title data={data} link={routes?.newRelease} />
             <div className={cx('content')}>
                 {!artistData && (
                     <div className={cx('button')}>

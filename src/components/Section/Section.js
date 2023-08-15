@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 function Section({ data, title, isAlbum, quantity = 5 }) {
     return (
         <div className={cx('wrapper')}>
-            <Title data={data} title={title} quantity={quantity} />
+            <Title data={data} title={title} quantity={quantity} link={data?.link && data?.link?.split('.')[0]} />
             <div className={cx('content', 'grid row')}>
                 {title
                     ? data

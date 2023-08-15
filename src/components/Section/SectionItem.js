@@ -17,7 +17,6 @@ function SectionItem({ data }) {
         const path = data?.link.split('.')[0];
         navigate(path);
     };
-
     return (
         <div className={cx('section-card', 'col l-2-4 m-3 s-6')}>
             <div onClick={handleClick}>

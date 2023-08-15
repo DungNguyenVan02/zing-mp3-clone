@@ -81,7 +81,7 @@ export const deleteRecentSongs = (index) => {
 export const search = (keyWord) => async (dispatch) => {
     try {
         const response = await apis.search(keyWord);
-        if (response.err === 0) {
+        if (response?.err === 0) {
             dispatch({
                 type: actionTypes.SEARCH,
                 payload: response,
@@ -107,7 +107,7 @@ export const getSearchSongs = (singerId, page) => async (dispatch) => {
     });
     try {
         const response = await apis.getArtistSongs(singerId, page);
-        if (response.err === 0) {
+        if (response?.err === 0) {
             dispatch({
                 type: actionTypes.SET_LIST_SONGS,
                 payload: response?.data?.items,

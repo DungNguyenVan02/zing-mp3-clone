@@ -27,7 +27,7 @@ function Album() {
             dispatch(actions.setLoadingPage(true));
             const response = await apis.getDetailPlayList(id);
             dispatch(actions.setLoadingPage(false));
-            if (response.err === 0) {
+            if (response?.err === 0) {
                 setPlayList(response?.data);
                 dispatch(actions.setSongs(response?.data?.song?.items));
             }

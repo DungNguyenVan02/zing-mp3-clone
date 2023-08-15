@@ -24,13 +24,16 @@ function ZingChart() {
     const [selected, setSelected] = useState(null);
 
     useEffect(() => {
+        dispatch(actions.setLoadingPage(true));
         const fetchApi = async () => {
             const response = await apis.getChart();
-            if (response.err === 0) {
+            if (response?.err === 0) {
                 setChartData(response);
+                dispatch(actions.setLoadingPage(false));
             }
         };
         fetchApi();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {

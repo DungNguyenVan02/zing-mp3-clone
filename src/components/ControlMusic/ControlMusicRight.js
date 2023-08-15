@@ -20,6 +20,7 @@ function ControlMusicRight() {
     };
     useEffect(() => {
         dispatch(setVolumeSong(volume));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [volume]);
 
     return (
@@ -41,6 +42,7 @@ function ControlMusicRight() {
                     </span>
                 )}
             </span>
+
             <input
                 className={cx('volume-input')}
                 onChange={handleChangeVolume}
@@ -50,6 +52,7 @@ function ControlMusicRight() {
                 step={1}
                 value={volume}
             />
+
             <span className={cx('icon')} onClick={handleOpen}>
                 <ListIcon />
             </span>

@@ -119,6 +119,7 @@ const ZingChart = memo(({ data, chart, rank }) => {
         const path = item?.link?.split('.')[0];
         navigate(path);
     };
+
     return (
         <div className={cx('wrapper')}>
             <div
@@ -126,7 +127,7 @@ const ZingChart = memo(({ data, chart, rank }) => {
                 style={{ background: `url(${images.bgChart}) top center / cover no-repeat` }}
             >
                 <div className={cx('chart-poster')}>
-                    <Link to={data?.item && data?.items[0]?.link.split('.')[0]} className={cx('header')}>
+                    <Link to={data?.items && data?.items[0]?.link.split('.')[0]} className={cx('header')}>
                         <h3 className={cx('header-title')}>#zingchart</h3>
                         <Button circle className={cx('header-icon')}>
                             <PlayIcon height="1.8rem" width="1.8rem" />
@@ -147,7 +148,7 @@ const ZingChart = memo(({ data, chart, rank }) => {
                                         />
                                     ))}
                                 <Link
-                                    to={data?.item && data?.items[0]?.link.split('.')[0]}
+                                    to={data?.items && data?.items[0]?.link.split('.')[0]}
                                     style={{ textAlign: 'center' }}
                                 >
                                     <Button large outline className={cx('rank-more')}>

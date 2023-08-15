@@ -26,13 +26,8 @@ const MENU_ITEMS = [
     },
     {
         icon: <NoteMusicIcon />,
-        title: 'Nhạc mới',
-        to: routes.newMusic,
-    },
-    {
-        icon: <RadioIcon />,
-        title: 'Radio',
-        to: routes.radio,
+        title: 'BXH Nhạc Mới',
+        to: routes.newRelease,
     },
     {
         icon: <StarIcon />,

@@ -44,3 +44,17 @@ export const setLoadingPage = (isLoading) => {
         payload: isLoading,
     };
 };
+
+export const setOpenPopup = (isOpen) => {
+    return {
+        type: actionTypes.SET_OPEN_POPUP,
+        payload: isOpen,
+    };
+};
+
+export const setUser = (data) => {
+    return {
+        type: actionTypes.SET_USER_LOGIN,
+        payload: data,
+    };
+};

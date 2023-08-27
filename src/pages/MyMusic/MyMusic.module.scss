@@ -1,0 +1,16 @@
+.wrapper {
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 24px 0;
+    .img-empty {
+        background-image: url(https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/icons/empty-fav-song-dark.png);
+        width: 120px;
+        height: 120px;
+    }
+    .description {
+        margin: 14px 0;
+    }
+}

@@ -1,6 +1,8 @@
 const routes = {
     home: '/',
     myMusic: '/my-music',
+    myMusicSong: '/my-music/song',
+    myMusicPlaylist: '/my-music/playlist',
     newRelease: '/moi-phat-hanh',
     top100: '/top100',
     album: '/album/:title/:id',

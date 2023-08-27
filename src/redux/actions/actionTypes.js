@@ -1,6 +1,7 @@
 const actionTypes = {
     GET_HOME: 'GET_HOME',
     SET_LOADING_PAGE: 'SET_LOADING_PAGE',
+    SET_USER_LOGIN: 'SET_USER_LOGIN',
 
     //music
     SET_CURRENT_SONG_ID: 'SET_CURRENT_SONG_ID',
@@ -18,6 +19,7 @@ const actionTypes = {
 
     //sidebar right
     SET_OPEN_SIDE_BAR_RIGHT: 'SET_OPEN_SIDE_BAR_RIGHT',
+    SET_OPEN_POPUP: 'SET_OPEN_POPUP',
 };
 
 export default actionTypes;

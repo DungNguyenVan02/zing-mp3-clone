@@ -1,5 +1,3 @@
-function MyMusic() {
-    return <div>MyMusic page</div>;
-}
-
-export default MyMusic;
+export { default as Song } from './Songs';
+export { default as Detail } from './Detail';
+export { default as PlayList } from './PlayList';

@@ -1,6 +1,6 @@
 import moment from 'moment';
 import 'moment/locale/vi';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Media.module.scss';
 import { PlayIcon, HeartIcon, MenuIcon, VipIcon, CopyIcon, ShareIcon } from '../icons';
@@ -10,6 +10,9 @@ import { Playing, Spinner as SpinnerLoading } from '../Animation';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
+import { doc, setDoc, updateDoc, arrayUnion, query, collection, where, onSnapshot } from 'firebase/firestore';
+import { db } from '~/firebase/config';
+import { toast } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 
@@ -28,6 +31,9 @@ function Media({
 }) {
     const dispatch = useDispatch();
     const { currentSongId, isPlaying, isLoading } = useSelector((state) => state.music);
+    const { user } = useSelector((state) => state.home);
+
+    const [songs, setSongs] = useState([]);
 
     const handlePlaying = () => {
         dispatch(actions.setPlaying(true));
@@ -69,11 +75,51 @@ function Media({
         </ul>
     );
 
+    useEffect(() => {
+        if (!user?.uid) return;
+        const q = query(collection(db, 'songs'), where('uid', '==', user?.uid));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const songs = [];
+            querySnapshot.forEach((doc) => {
+                songs.push(doc.data());
+            });
+            setSongs(songs);
+        });
+        return unsubscribe;
+    }, [user?.uid]);
+
+    const handleAddMyFavorite = async () => {
+        if (user === null) {
+            toast.warning('Vui lòng đăng nhập vào ứng dụng!');
+            return;
+        }
+
+        if (songData?.isWorldWide === false) {
+            toast.warning('Bài hát chỉ dành cho tài khoản VIP!');
+            return;
+        }
+
+        const docRef = doc(db, 'songs', 'songId');
+        if (songs.length <= 0) {
+            await setDoc(docRef, {
+                uid: user?.uid,
+                myFavorites: { songData },
+            });
+        } else {
+            await updateDoc(docRef, {
+                myFavorites: arrayUnion(songData),
+            });
+        }
+
+        toast.info('Đã thêm vào yêu thích');
+    };
+
     const classes = cx('wrapper', {
         [className]: className,
         activeSzBar: small && songData?.encodeId === currentSongId && !bgNone && !showInfo,
         active: songData?.encodeId === currentSongId,
     });
+
     return (
         <div className={classes} {...props}>
             {order && <h2 className={cx('rank', `rank-${order}`)}>{order}</h2>}
@@ -117,8 +163,8 @@ function Media({
                     ) : (
                         <></>
                     )}
-                    <span className={cx('option-icon')} title="Thêm vào yêu thích">
-                        <HeartIcon height="1.6rem" width="1.6rem" />
+                    <span className={cx('option-icon')} title="Thêm vào yêu thích" onClick={handleAddMyFavorite}>
+                        <HeartIcon height="1.6rem" width="1.6rem" onClick={handleAddMyFavorite} />
                     </span>
                     <HeadlessTippy trigger="click" interactive render={handleShowOption} placement="top">
                         <span className={cx('option-icon')} title="xem thêm">

@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './SidebarLeft.module.scss';
-import { BoxMusicIcon, CircleIcon, RadioIcon, NoteMusicIcon, StarIcon, ChartIcon } from '~/components/icons';
+import { BoxMusicIcon, CircleIcon, NoteMusicIcon, StarIcon, ChartIcon } from '~/components/icons';
 import images from '~/assets/images';
 import routes from '~/config/routes';
 import SidebarLeftItem from './SidebarLeftItem';
@@ -8,35 +8,34 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-const MENU_ITEMS = [
-    {
-        icon: <BoxMusicIcon />,
-        title: 'Cá nhân',
-        to: routes.myMusic,
-    },
-    {
-        icon: <CircleIcon />,
-        title: 'Khám phá',
-        to: routes.home,
-    },
-    {
-        icon: <ChartIcon />,
-        title: '#zingchart',
-        to: routes.zingChart,
-    },
-    {
-        icon: <NoteMusicIcon />,
-        title: 'BXH Nhạc Mới',
-        to: routes.newRelease,
-    },
-    {
-        icon: <StarIcon />,
-        title: 'Top 100',
-        to: routes.top100,
-    },
-];
-
 function SidebarLeft() {
+    const MENU_ITEMS = [
+        {
+            icon: <BoxMusicIcon />,
+            title: 'Cá nhân',
+            to: routes.myMusic,
+        },
+        {
+            icon: <CircleIcon />,
+            title: 'Khám phá',
+            to: routes.home,
+        },
+        {
+            icon: <ChartIcon />,
+            title: '#zingchart',
+            to: routes.zingChart,
+        },
+        {
+            icon: <NoteMusicIcon />,
+            title: 'BXH Nhạc Mới',
+            to: routes.newRelease,
+        },
+        {
+            icon: <StarIcon />,
+            title: 'Top 100',
+            to: routes.top100,
+        },
+    ];
     return (
         <div className={cx('wrapper')}>
             <Link to={routes.home}>

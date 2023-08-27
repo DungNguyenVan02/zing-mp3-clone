@@ -17,8 +17,14 @@ const persistMusicConfig = {
     whitelist: ['currentSongId', 'currentAlbumId', 'volume', 'currentSongData', 'recentSongs', 'search', 'weekChart'],
 };
 
+const persistHomeConfig = {
+    ...persistConfig,
+    key: 'home',
+    whitelist: ['user'],
+};
+
 const rootReducer = combineReducers({
-    home: homeSlice,
+    home: persistReducer(persistHomeConfig, homeSlice),
     music: persistReducer(persistMusicConfig, musicSlice),
 });
 

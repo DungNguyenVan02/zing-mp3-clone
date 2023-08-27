@@ -14,7 +14,9 @@ const initState = {
     editorTheme11: {},
     chart: {},
     rank: [],
+    user: null,
     isOpenSidebar: false,
+    isOpenPopup: false,
     isLoadingPage: false,
 };
 function homeSlice(state = initState, action) {
@@ -42,10 +44,20 @@ function homeSlice(state = initState, action) {
                 ...state,
                 isOpenSidebar: action.payload,
             };
+        case actionTypes.SET_OPEN_POPUP:
+            return {
+                ...state,
+                isOpenPopup: action.payload,
+            };
         case actionTypes.SET_LOADING_PAGE:
             return {
                 ...state,
                 isLoadingPage: action.payload,
+            };
+        case actionTypes.SET_USER_LOGIN:
+            return {
+                ...state,
+                user: action.payload,
             };
         default:
             return state;

@@ -40,6 +40,12 @@
             -webkit-filter: brightness(50%);
             filter: brightness(50%);
         }
+        .duration {
+            display: none;
+        }
+        .heart {
+            display: flex;
+        }
     }
 
     &.active {
@@ -163,4 +169,14 @@
 
 .order {
     flex: none;
+}
+
+.heart {
+    display: none;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 500;
 }

@@ -1,6 +1,5 @@
 import routes from '~/config/routes';
 import Home from '~/pages/Home';
-import MyMusic from '~/pages/MyMusic';
 import NewRelease from '~/pages/NewRelease';
 import Top100 from '~/pages/Top100';
 import Album from '~/pages/Album';
@@ -11,16 +10,15 @@ import SearchSongs from '~/pages/SearchSongs';
 import SearchAll from '~/pages/SearchAll';
 import SearchPlaylist from '~/pages/SearchPlaylist';
 import Singer from '~/pages/Singer';
+import { Song, PlayList, Detail } from '~/pages/MyMusic';
+import Playlist from '~/pages/MyMusic/PlayList';
 
 const publicRoutes = [
     {
         path: routes.home,
         component: Home,
     },
-    {
-        path: routes.myMusic,
-        component: MyMusic,
-    },
+
     {
         path: routes.newRelease,
         component: NewRelease,
@@ -68,6 +66,18 @@ const publicRoutes = [
     {
         path: routes.artistSinger,
         component: Singer,
+    },
+    {
+        path: routes.myMusic,
+        component: Detail,
+    },
+    {
+        path: routes.myMusicSong,
+        component: Song,
+    },
+    {
+        path: routes.myMusicPlaylist,
+        component: PlayList,
     },
 ];
 const privateRoutes = [];

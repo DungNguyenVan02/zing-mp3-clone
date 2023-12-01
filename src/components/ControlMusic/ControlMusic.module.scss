@@ -135,17 +135,6 @@
         border-radius: 8px;
         background-color: var(--progressbar-player-bg);
         cursor: pointer;
-        &:hover {
-            height: 4px;
-            width: 100%;
-            .progress-area {
-                height: 4px;
-
-                &::after {
-                    display: block;
-                }
-            }
-        }
     }
     .progress-area {
         position: relative;

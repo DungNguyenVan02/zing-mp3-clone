@@ -11,7 +11,6 @@ import SearchAll from '~/pages/SearchAll';
 import SearchPlaylist from '~/pages/SearchPlaylist';
 import Singer from '~/pages/Singer';
 import { Song, PlayList, Detail } from '~/pages/MyMusic';
-import Playlist from '~/pages/MyMusic/PlayList';
 
 const publicRoutes = [
     {
